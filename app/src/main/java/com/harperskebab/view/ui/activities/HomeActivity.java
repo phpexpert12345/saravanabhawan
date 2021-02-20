@@ -117,6 +117,7 @@ if(s.length()>0){
     SearchItems(s.toString());
 }
 else{
+    Utility.hideKeyboard(HomeActivity.this);
     initiateHomeFragment();
 }
             }

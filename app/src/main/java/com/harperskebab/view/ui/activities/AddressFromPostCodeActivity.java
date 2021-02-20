@@ -57,7 +57,7 @@ public class AddressFromPostCodeActivity extends BaseActivity {
     String postalCode;
     Intent intent;
     public  void onClick(String strId, String val) {
-        final String URL = "https://api.getaddress.io/get/"+strId+"?api-key=OspYMXCpvkG568eqQ-tP5Q28829";
+        final String URL = "https://api.getaddress.io/get/"+strId+"?api-key="+postcode_auto_secret_administration_API_Key;
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {

@@ -399,7 +399,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
             public void afterTextChanged(Editable s) {
                 String value = s.toString();
                 if (value.length() == 7) {
-                    final String URL = "https://api.getaddress.io/autocomplete/" + value + "?api-key=OspYMXCpvkG568eqQ-tP5Q28829";
+                    final String URL = restaurantViewModel.getRestaurant().getValue().getPostcode_auto_API_URL() + value + "?api-key="+restaurantViewModel.getRestaurant().getValue().getPostcode_auto_complete_key();
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     try {
                         JSONObject object = new JSONObject();
