@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
+    tools:context=".view.ui.fragments.more.BookATableFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTableDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@drawable/table_background">
+    <EditText
+        android:id="@+id/edtSearchTable"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:hint="ENTER TABLE NUMBER"
+        android:padding="10dp"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        android:inputType="textCapCharacters"
+        android:textColor="#0F090D"
+        android:textColorHint="#0F090D"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawableTint="#0F090D"
+        android:drawablePadding="10dp"/>
+</LinearLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewChooseTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="You are currently in this restaurant"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtBranchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            tools:text="Address"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            tools:text="Address"
+            android:visibility="gone"
+            android:textColor="#C1C1C1"
+            android:layout_marginTop="3dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            tools:listitem="@layout/table_list_item_row" />
+<LinearLayout
+    android:id="@+id/layNoItemFound"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    android:gravity="center">
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="No data found"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

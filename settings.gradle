@@ -1,0 +1,4 @@
+include ':app:barcode-reader'
+include ':app:navigation-drawer'
+include ':app'
+rootProject.name = "HarpersKebab"

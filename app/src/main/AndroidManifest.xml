@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.harperskebab">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".Application"
+        android:allowBackup="true"
+        android:icon="@drawable/app_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.ui.activities.ProductDetailActivity"></activity>
+        <activity android:name=".view.ui.activities.TrackingActivity" />
+        <activity android:name=".view.ui.activities.RootActivity" />
+        <activity android:name=".view.ui.activities.OrderDetailActivity" />
+        <activity
+            android:name=".view.ui.activities.AddressFromPostCodeActivity"
+            android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".view.ui.activities.MapActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".view.ui.activities.ExtraTopingActivity" />
+        <activity android:name=".view.ui.activities.ComboSelectionActivity" />
+        <activity android:name=".view.ui.activities.NewBranchActivity" />
+        <activity android:name=".view.ui.activities.BaseActivity" />
+        <activity android:name=".view.ui.activities.MainActivity">
+        </activity>
+        <activity android:name=".view.ui.activities.AuthenticationActivity" />
+        <activity
+            android:name=".view.ui.activities.HomeActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".view.ui.activities.MenuActivity" />
+        <activity android:name=".view.ui.activities.CartActivity" />
+        <activity android:name=".view.ui.activities.MoreActivity" />
+        <activity android:name=".view.ui.activities.user.MyProfileActivity" />
+        <activity android:name=".view.ui.activities.user.MyProfileEditActivity" />
+        <activity android:name=".view.ui.activities.user.ChangePasswordActivity" />
+        <activity android:name=".view.ui.activities.OrderCompleteActivity" />
+        <activity android:name=".view.ui.activities.BookATableCompleteActivity" />
+        <activity android:name=".view.ui.activities.PayLaterOrderCompleteActivity" />
+        <activity android:name=".view.ui.activities.OrderActivity" />
+        <activity android:name=".view.ui.activities.PayLaterOrderActivity" />
+        <activity android:name=".view.ui.activities.AddressActivity" />
+        <activity android:name=".view.ui.activities.OrderReviewActivity" />
+        <activity android:name=".view.ui.activities.TicketActivity" />
+        <activity android:name=".view.ui.activities.LoyaltyActivity" />
+        <activity android:name=".view.ui.activities.ContactUsActivity" />
+        <activity android:name=".view.ui.activities.AboutUsActivity" />
+        <activity android:name=".view.ui.activities.TermsActivity" />
+        <activity android:name=".view.ui.activities.PolicyActivity" />
+        <activity android:name=".view.ui.activities.ReferActivity" />
+        <activity android:name=".view.ui.activities.ForgetPasswordActivity" />
+        <activity android:name=".view.ui.activities.LanguageActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAfySREHfRw2x8bEFT6b7Nc4z3Te80LiyI" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.harperskebab.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <activity android:name=".view.ui.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F8F8">
+    <RelativeLayout
+        android:id="@+id/rellayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+        <LinearLayout
+            android:id="@+id/layParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/nilu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nilu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/nilu"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/header_arrow"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:background="@drawable/white_detail_bg"
+                android:orientation="vertical"
+                android:padding="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:singleLine="true"
+                        android:text="@string/food"
+                        android:textSize="16sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:singleLine="true"
+                        android:text="Detail"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"/>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewTotalFoodPackage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6 item added"
+                        android:textColor="@color/colorGray"
+                        android:textSize="16sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewFoodPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/lay"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:gravity="center"
+                        android:paddingEnd="10dp"
+                        android:text="@string/_0_00"
+                        android:layout_marginTop="20dp"
+                        android:textColor="#7E7A77"/>
+                    <HorizontalScrollView
+                        android:id="@+id/horx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imgFoodType"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgFoodTypeNon"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgFoodPopuler"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgFoodSpicy"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgMidFoodSpicy"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgVeryFoodSpicy"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="5dp" />
+
+                            <ImageView
+                                android:id="@+id/imgGreenFoodSpicy"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/user" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/layAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/new_food_count_background"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="60dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewAdd"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="@string/add" />
+
+                        <LinearLayout
+                            android:id="@+id/lLinearLayoutCountDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewMinus"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:background="#F9C63B"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="-"
+                                android:textSize="26sp"
+                                android:textColor="@color/colorWhite" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewFoodCount"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="1" />
+                        </LinearLayout>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewPlus"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="#F9C63B"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="+"
+                            android:textSize="26sp"
+                            android:textColor="@color/colorWhite" />
+
+                    </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

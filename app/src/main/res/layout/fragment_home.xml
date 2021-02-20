@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".view.ui.fragments.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtBranchId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:singleLine="true"
+            tools:text="@string/order_id"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtBranchName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/order_id"
+            android:textSize="12sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgChangePostCode"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:src="@drawable/ic_edit"
+        android:padding="3dp"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+</LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayoutBestFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/home__bg"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:visibility="gone"
+                    android:background="@drawable/white_round_corner_bg"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/loupe"
+                        android:padding="10dp"/>
+                    <EditText
+                        android:id="@+id/edtCatSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="Food menu search"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:textColorHint="#CECECE"
+                        android:textColor="@color/darkGray"/>
+                </LinearLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerBestFood"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"/>
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:layout_gravity="center"
+    android:background="@drawable/green_round_bg"
+    android:layout_marginTop="-10dp">
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/wormDotsIndicatorBestFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:layout_gravity="center"
+        app:dotsColor="@color/white"
+        app:dotsCornerRadius="12dp"
+        app:dotsSize="12dp"
+        app:dotsSpacing="4dp"
+        app:dotsWidthFactor="4"
+        app:progressMode="true" />
+</LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/explore_categories"
+                android:textColor="@color/colorBlack"
+                android:visibility="gone"
+                android:fontFamily="@font/montserrat_medium" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFoodCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/food_category_list_item_row" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

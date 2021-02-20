@@ -1,0 +1,516 @@
+<resources>
+    <string name="Drink_Tax">Drink Tax</string>
+    <string name="Food_Tax">Food Tax</string>
+
+    <string name="New_Drink_Tax">New Drink Tax</string>
+
+    <string name="New_Food_Discount">New Food Discount</string>
+    <string name="New_Food_Item">New Food Item</string>
+    <string name="New_Food_Tax">New Food Tax</string>
+
+    <string name="Pickup_From">Pickup From</string>
+
+    <string name="Please_Enter_Comment">Please Enter Comment</string>
+    <string name="Please_Enter_Issue_Type">Please Enter Issue Type</string>
+    <string name="Please_Enter_Order_Number">Please Enter Order Number</string>
+
+    <string name="Please_Select_Table">Please Select Table</string>
+
+    <string name="Please_Sign_in">Please Sign-in</string>
+
+    <string name="Please_enter_message">Please Enter Message</string>
+
+    <string name="Rider_tip">Rider tip</string>
+
+    <string name="To_Pay">To Pay</string>
+
+    <string name="Vat_Tax">Vat Tax</string>
+
+    <string name="_0">0%</string>
+    <string name="_0_00">0.00</string>
+    <string name="_0_pts">0 Points</string>
+
+    <string name="_10">10%</string>
+
+    <string name="_1001_family">1001 Family</string>
+
+    <string name="_20">20%</string>
+
+    <string name="_30">30%</string>
+
+    <string name="_40">40%</string>
+
+    <string name="_4_hours_ago">4 hours ago</string>
+
+    <string name="_50">50%</string>
+
+    <string name="_9987666037">9987666037</string>
+
+    <string name="about">About</string>
+
+    <string name="add">ADD</string>
+
+    <string name="add_address">Add address</string>
+
+    <string name="add_more">ADD MORE</string>
+
+    <string name="add_new_address">Add New Address</string>
+
+    <string name="add_to_cart">ADD TO CART</string>
+
+    <string name="address">Address</string>
+
+    <string name="address_title">Address Title</string>
+
+    <string name="allergy">Allergy</string>
+
+    <string name="allergy_instruction">
+            <b>Leave a note for the restaurant</b>(e.g. if you have a food allergy or instruction for the restuarant / driver)</string>
+
+    <string name="app_name">Saravana Bhavan</string>
+
+    <string name="place_details">
+       <![CDATA[
+           <b>%1$s</b>
+           <br/>
+           Place Id: %2$s
+           <br/>
+           Address: %3$s
+           <br/>
+           Phone: %4$s
+           <br/>
+           Website: %5$s
+       ]]>
+       </string>
+
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="apply_coupon_code">Apply Coupon Code</string>
+
+    <string name="asap">ASAP</string>
+
+    <string name="ayyaz_khan">Ayyaz Khan</string>
+
+    <string name="back_to_my_home">Back to My Home</string>
+
+    <string name="bill_detail">Bill Detail</string>
+
+    <string name="birthday_celebrations">Birthday Celebrations</string>
+
+    <string name="book">Book</string>
+
+    <string name="book_a_table">Book A Table</string>
+
+    <string name="booking_date">Booking Date</string>
+    <string name="booking_date_1">Booking Date:</string>
+
+    <string name="booking_time">Booking Time</string>
+    <string name="booking_time_1">Booking Time:</string>
+
+    <string name="branch">Branches</string>
+
+    <string name="branches">Branches</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="cash_on_delivery">Cash on Delivery</string>
+
+    <string name="change_password">Change Password</string>
+
+    <string name="choose_any_5_topping_free">Choose Any 5 Topping Free</string>
+
+    <string name="choose_branch">Choose Branch</string>
+
+    <string name="choose_table">Choose Table</string>
+
+    <string name="city">City</string>
+
+    <string name="city_name">City Name</string>
+
+    <string name="comment">Comment</string>
+
+    <string name="confirm_amp_pay"><![CDATA[Confirm & Pay]]></string>
+
+    <string name="confirm_new_password">Confirm New Password</string>
+
+    <string name="confirmation">Confirmation</string>
+
+    <string name="confirmation_booking">Confirmation Booking</string>
+
+    <string name="contact_us">Contact Us</string>
+
+    <string name="contact">Contact</string>
+
+    <string name="continue_checkout">Checkout</string>
+
+    <string name="continue_order">Continue Order</string>
+
+    <string name="coupon_discount">Coupon Discount</string>
+
+    <string name="credit_debit_card">Credit/Debit Card</string>
+
+    <string name="customer_name">Customer Name</string>
+
+    <string name="delivered_to">Delivered to</string>
+
+    <string name="delivery">Delivery</string>
+
+    <string name="delivery_area">Delivery Area</string>
+
+    <string name="delivery_charge">Delivery Charge</string>
+
+    <string name="delivery_schedule">Delivery Schedule</string>
+
+    <string name="deposit_amount_for_booking_10">Deposit Amount for Booking(10%):</string>
+
+    <string name="do_you_have_an_allergy">Do you have an allergy?</string>
+
+    <string name="eat_in">Eat-In</string>
+
+    <string name="edit_profile">Edit Profile</string>
+
+    <string name="enter_coupon_code">Enter Coupon Code</string>
+
+    <string name="enter_instruction">Enter Instruction</string>
+
+    <string name="enter_loyalty_point_code">Enter Loyalty Point Code</string>
+
+    <string name="example_gmail_com">example@gmail.com</string>
+
+    <string name="explore_categories">Explore Categories</string>
+
+    <string name="extra_topping">Extra Topping</string>
+
+    <string name="final_bill_amount">Final Bill Amount:</string>
+
+    <string name="first_name">First Name</string>
+    <string name="flat_name">Flat Name</string>
+
+    <string name="food">Food</string>
+
+    <string name="food_category">Food Category</string>
+
+    <string name="food_count">Food Count</string>
+
+    <string name="food_description">Food Description</string>
+
+    <string name="food_discount">Food Discount</string>
+
+    <string name="food_item">Food Item</string>
+
+    <string name="food_name">Food Name</string>
+
+    <string name="food_price">Food Price</string>
+
+    <string name="free_sign_up">Free Sign Up</string>
+
+    <string name="friday">Friday</string>
+
+    <string name="gallery">Gallery</string>
+
+    <string name="get_one_friend_to_order_from_and_earn_a_points">Get one friend to order from and earn a points!</string>
+
+    <string name="go_to_home">Go To Home</string>
+
+    <string name="group_ordering">Group Ordering</string>
+
+    <string name="house_door_number">House/Door Number</string>
+
+    <string name="house_no">House No.</string>
+
+    <string name="i_found_best_food_according_to_the_test">I found best food according to the test</string>
+
+    <string name="info">info</string>
+
+    <string name="issue_type">Issue Type</string>
+
+    <string name="last_name">Last Name</string>
+
+    <string name="later">Later</string>
+
+    <string name="logout">Logout</string>
+
+    <string name="looks_like_you_haven_t_made_your_choice_yet">Looks like you haven\'t made your choice yet.</string>
+
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_duis_consequat_diam_a_vehicula_mattis_est_massa_vehicula_urna_non_pulvinar_sem_purus_ac_sapien_pellentesque_habitant_morbi_tristique_senectus_et">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consequat, diam a vehicula mattis, est massa vehicula urna, non pulvinar sem purus ac sapien. Pellentesque habitant morbi tristique senectus et</string>
+
+    <string name="loyalty_discount">Loyalty Discount</string>
+
+    <string name="loyalty_points">Loyalty Points</string>
+
+    <string name="make_payment">Make Payment</string>
+
+    <string name="manage_ticket">Manage Ticket</string>
+
+    <array name="menuOptions">
+        <item>SignIn</item>
+        <item>Register</item>
+        <item>Contact Us/Help</item>
+        <item>About Us</item>
+        <item>Terms of Service</item>
+        <item>Privacy &amp; Policy</item>
+        <item>Rate App</item>
+    </array>
+
+    <array name="menuOptionsUsers">
+        <item>My Account</item>
+        <item>My Orders</item>
+        <item>Pay Later</item>
+        <item>My Address</item>
+        <item>My Reviews</item>
+        <item>My Tickets</item>
+        <item>My Loyalty Points</item>
+        <!-- <item>My Wallet</item>-->
+        <item>Change Password</item>
+        <item>Refer a Friends</item>
+        <item>Language setting</item>
+        <item>Contact Us/Help</item>
+        <item>Rate App</item>
+        <item>Logout</item>
+    </array>
+
+    <string name="message">Message</string>
+
+    <string name="mobile_no">Mobile No.</string>
+
+    <string name="mobile_number">Mobile Number</string>
+
+    <string name="monday">Monday</string>
+
+    <string name="my_address">My Address</string>
+
+    <string name="my_profile">My Profile</string>
+
+    <string name="my_tickets">My Tickets</string>
+
+    <string name="new_password">New Password</string>
+
+    <string name="no_of_person">No Of Person</string>
+
+    <string name="note_if_10_minutes_late_for_the_booking_the_table_will_be_re_allocated">Note: If 10 minutes late for the booking the table will be re allocated</string>
+
+    <string name="offer">Offer</string>
+
+    <string name="offers">Offers</string>
+
+    <string name="office">Office</string>
+
+    <string name="old_password">Old Password</string>
+
+    <string name="on_of_person">On Of Person:</string>
+
+    <string name="opening_hours">Opening Hours</string>
+
+    <string name="order">Order :</string>
+
+    <string name="order_completed">Order Completed</string>
+
+    <string name="order_date">Order Date</string>
+    <string name="order_date_time">Order Date Time</string>
+
+    <string name="order_history">Order History</string>
+
+    <string name="order_id">Order ID:</string>
+
+    <string name="order_no">Order No:</string>
+
+    <string name="order_number">Order Number</string>
+
+    <string name="order_send_to_kitchen">Order send to Kitchen</string>
+
+    <string name="order_status">Order Status</string>
+
+    <string name="order_type">Order Type</string>
+
+    <string name="package_charge">Package Charge</string>
+
+    <string name="password_amp_security"><![CDATA[Password & Security]]></string>
+
+    <string name="password_not_match">New Password not match. Please enter correct new password</string>
+
+    <string name="pay">pay</string>
+
+    <string name="pay_later">Pay Later</string>
+
+    <string name="pay_now">Pay Now</string>
+
+    <string name="paypal">Paypal</string>
+
+    <string name="per_order_loyality_point">Per Order Loyality Point</string>
+
+    <string name="phone">Phone</string>
+
+    <string name="phone_no_9987666037">Phone no. 9987666037</string>
+
+    <string name="pick_up">Pickup</string>
+
+    <string name="place_first_order">Place First Order</string>
+
+    <string name="please_choose_table">Please Choose Table</string>
+
+    <string name="please_enter_address_title">Please Enter Address Title</string>
+    <string name="please_enter_booking_time">Please Enter Booking Time</string>
+    <string name="please_enter_booting_date">Please_Enter_Booting_Date</string>
+    <string name="please_enter_card_details">Please enter card Details</string>
+    <string name="please_enter_city">Please enter city</string>
+    <string name="please_enter_coupon_code">Please enter coupon code</string>
+    <string name="please_enter_customer_mobile">Please Enter Customer Mobile</string>
+    <string name="please_enter_customer_name">Please Enter Customer Name</string>
+    <string name="please_enter_email_address">Please enter Email Address</string>
+    <string name="please_enter_first_name">Please Enter First Name</string>
+    <string name="please_enter_flat_name">Please Enter Flat Name</string>
+    <string name="please_enter_full_name">Please enter full name</string>
+    <string name="please_enter_house_door_number">Please Enter House/Door Number</string>
+    <string name="please_enter_house_no">Please Enter House No.</string>
+    <string name="please_enter_last_name">Please Enter Last Name</string>
+    <string name="please_enter_loyalty_point">Please enter loyalty point</string>
+    <string name="please_enter_mobile_no">Please Enter Mobile No.</string>
+    <string name="please_enter_order_type">Please select order type</string>
+    <string name="please_enter_password">Please enter Password</string>
+    <string name="please_enter_phone_no">Please enter phone no</string>
+    <string name="please_enter_postal_code">Please Enter Postal Code</string>
+    <string name="please_enter_street_name">Please Enter Street Name</string>
+    <string name="please_enter_your_email">Please Enter Your email</string>
+    <string name="please_enter_your_mobile">Please Enter Your Mobile</string>
+    <string name="please_enter_your_name">Please Enter Your Name</string>
+
+    <string name="please_select_payment_type">Please select payment type</string>
+    <string name="please_select_table">Please Select Table</string>
+
+    <string name="please_write_your_review">Please write your review</string>
+
+    <string name="postal_code">Postal Code</string>
+    <string name="postal_code_bn3_1ae">Postal Code: BN3 1AE</string>
+
+    <string name="posting_a_review">Posting A Review</string>
+
+    <string name="preview">Preview</string>
+
+    <string name="pts">Points</string>
+
+    <string name="redeem_loyalty_point">Redeem Loyalty Point</string>
+
+    <string name="refer_a_friends">Refer a Friends</string>
+
+    <string name="referral_code">Referral Code</string>
+
+    <string name="restaurant_address">Restaurant Address</string>
+
+    <string name="restaurant_description">Restaurant Description</string>
+
+    <string name="restaurant_discount">Restaurant Discount</string>
+
+    <string name="restaurant_name">Restaurant Name</string>
+
+    <string name="restaurant_review">Restaurant Review</string>
+
+    <string name="restaurant_reviews">Restaurant Reviews</string>
+
+    <string name="review">Review</string>
+
+    <string name="reviews">Reviews</string>
+
+    <string name="sales_tax">Sales Tax</string>
+
+    <string name="saturday">Saturday</string>
+
+    <string name="scan_qr_code">Scan QR Code</string>
+
+    <string name="selected_table_has_less_capacity">SELECTED TABLE HAS LESS CAPACITY THAN NO OF PERSON. PLEASE SELECT CORRECT TABLE</string>
+
+    <string name="send">Send</string>
+
+    <string name="service_charge">Service Charge:</string>
+    <string name="service_charge_1">Service Charge</string>
+
+    <string name="size">Size</string>
+
+    <string name="social_sharing">Social Sharing</string>
+
+    <string name="special_instructions">Special Instructions</string>
+
+    <string name="spend_amp_earn"><![CDATA[Spend & Earn]]></string>
+
+    <string name="street_name">Street Name</string>
+
+    <string name="sub_total">Sub Total</string>
+
+    <string name="submit">Submit</string>
+
+    <string name="subtotal_after_discount">SubTotal After Discount:</string>
+
+    <string name="sunday">Sunday</string>
+
+    <string name="table">Table:</string>
+
+    <string name="table_1001_family">Table: 1001 Family</string>
+
+    <string name="table_no">Table No:</string>
+
+    <string name="table_number_1001_family_at_25_jul_2020_12_29_pm">Table Number: 1001(Family) at 25 Jul, 2020 12:29 PM</string>
+
+    <string name="thank_you">Thank you</string>
+
+    <string name="thursday">Thursday</string>
+
+    <string name="ticket_no">Ticket No:</string>
+
+    <string name="ticket_status">Ticket Status</string>
+
+    <string name="to_pay">To Pay</string>
+
+    <string name="total">Total</string>
+
+    <string name="total_bill_amount">Total Bill Amount:</string>
+
+    <string name="total_discount">Total Discount:</string>
+    <string name="total_discount_1">Total Discount</string>
+
+    <string name="total_pay_n_0_00">Total Pay \n 0.00</string>
+
+    <string name="total_points">Total Points</string>
+
+    <string name="track">Track</string>
+
+    <string name="track_order">Track Order</string>
+
+    <string name="transaction_number">Transaction Number:</string>
+
+    <string name="tuesday">Tuesday</string>
+
+    <string name="view_cart">VIEW CART</string>
+
+    <string name="sent_email_with_all_the_details_of_your_order"><![CDATA[We`ve sent you an email with all the details of your order & remember you can track your order using this app!]]></string>
+
+    <string name="wednesday">Wednesday</string>
+
+    <string name="when_would_you_like_your_food">When would you like your food ?</string>
+
+    <string name="woops">WOOPS!</string>
+
+    <string name="write_a_review">Write a Review</string>
+
+    <string name="write_your_review">Write your review</string>
+
+    <string name="x">X</string>
+
+    <string name="you_have_refferred">You have refferred</string>
+
+    <string name="your_booking_confirmation_has_been_successfully_send_to_restaurant">Your Booking Confirmation has been successfully send to restaurant.</string>
+    <string name="your_booking_number">Your Booking Number:</string>
+
+    <string name="your_cart_is_empty">Your Cart is Empty!</string>
+
+    <string name="your_email">Your Email</string>
+
+    <string name="your_mobile">Your Mobile</string>
+
+    <string name="your_name">Your Name</string>
+
+    <string name="my_orders">My Orders</string>
+    <string name="your_order_number">Your Order Number:</string>
+    <string name="order_tracking">Order tracking</string>
+    <string name="new_ticket">New Ticket</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="choose_combo">Choose Combo</string>
+</resources>

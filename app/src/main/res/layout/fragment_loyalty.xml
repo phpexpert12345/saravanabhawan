@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
+    tools:context=".view.ui.fragments.LoyaltyFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_sign_up"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/free_sign_up"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSignUp"
+                        app:layout_constraintEnd_toStartOf="@id/textViewSignUpLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewSignUp"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSignUp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewSignUpLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSignUp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewTitle"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSignUp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewPlaceFirstOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_first_order"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPlaceFirstOrder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/place_first_order"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPlaceFirstOrder"
+                        app:layout_constraintEnd_toStartOf="@id/textViewPlaceFirstOrderLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewPlaceFirstOrder"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPlaceFirstOrder" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPlaceFirstOrderLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPlaceFirstOrder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewPlaceFirstOrder"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPlaceFirstOrder" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewPostingReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_review_point"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPostingReview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/posting_a_review"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPostingReview"
+                        app:layout_constraintEnd_toStartOf="@id/textViewPostingReviewLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewPostingReview"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPostingReview" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPostingReviewLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPostingReview"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewPostingReview"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPostingReview" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewGroupOrdering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_group_order"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewGroupOrdering"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/group_ordering"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewGroupOrdering"
+                        app:layout_constraintEnd_toStartOf="@id/textViewGroupOrderingLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewGroupOrdering"
+                        app:layout_constraintTop_toTopOf="@id/imageViewGroupOrdering" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewGroupOrderingLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewGroupOrdering"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewGroupOrdering"
+                        app:layout_constraintTop_toTopOf="@id/imageViewGroupOrdering" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewBirthdayCelebrations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_celebration"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewBirthdayCelebrations"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/birthday_celebrations"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewBirthdayCelebrations"
+                        app:layout_constraintEnd_toStartOf="@id/textViewBirthdayCelebrationsLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewBirthdayCelebrations"
+                        app:layout_constraintTop_toTopOf="@id/imageViewBirthdayCelebrations" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewBirthdayCelebrationsLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewBirthdayCelebrations"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewBirthdayCelebrations"
+                        app:layout_constraintTop_toTopOf="@id/imageViewBirthdayCelebrations" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewSocialSharing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_sharing"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewSocialSharing"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/social_sharing"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSocialSharing"
+                        app:layout_constraintEnd_toStartOf="@id/textViewSocialSharingLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewSocialSharing"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSocialSharing" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewSocialSharingLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSocialSharing"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewSocialSharing"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSocialSharing" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewSpendEarn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_spend_earn"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewSpendEarn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/spend_amp_earn"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSpendEarn"
+                        app:layout_constraintEnd_toStartOf="@id/textViewSpendEarnLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewSpendEarn"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSpendEarn" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewSpendEarnLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewSpendEarn"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewSpendEarn"
+                        app:layout_constraintTop_toTopOf="@id/imageViewSpendEarn" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewReferFriend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_refer"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewReferFriend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/refer_a_friends"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewReferFriend"
+                        app:layout_constraintEnd_toStartOf="@id/textViewReferFriendLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewReferFriend"
+                        app:layout_constraintTop_toTopOf="@id/imageViewReferFriend" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewReferFriendLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewReferFriend"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewReferFriend"
+                        app:layout_constraintTop_toTopOf="@id/imageViewReferFriend" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLite"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewPerOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_first_order"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPerOrder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="10dp"
+                        android:text="@string/per_order_loyality_point"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPerOrder"
+                        app:layout_constraintEnd_toStartOf="@id/textViewPerOrderLoyaltyPoint"
+                        app:layout_constraintStart_toEndOf="@id/imageViewPerOrder"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPerOrder" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textViewPerOrderLoyaltyPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/_0_pts"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toBottomOf="@id/imageViewPerOrder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textViewPerOrder"
+                        app:layout_constraintTop_toTopOf="@id/imageViewPerOrder" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
