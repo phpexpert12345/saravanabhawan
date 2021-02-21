@@ -170,6 +170,7 @@ public class SearchItemExtraToppingFragment extends BaseFragment{
         cartItem.top_price="";
         cartItem.total_price="0.0";
         cartItem.icon=food.getFoodIcon();
+        cartItem.food_tax_applicable=food.getFoodTaxApplicable();
         if(foods!=null) {
             if (foods.size() > 0) {
                 for (FoodItemExtraTopping food : foods) {

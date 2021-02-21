@@ -73,7 +73,7 @@
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:ellipsize="end"
                             android:fontFamily="@font/montserrat_medium"
-                            android:maxLines="3"
+                            android:maxLines="5"
                             android:text="@string/food_description"
                             android:textColor="#7E7A77"
                             android:textSize="@dimen/_12sdp" />

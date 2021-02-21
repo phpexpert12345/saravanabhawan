@@ -386,6 +386,7 @@ else{
         cartItem.top_price="";
         cartItem.total_price="0.0";
         cartItem.icon=selectedfood.getFoodIcon();
+        cartItem.food_tax_applicable=selectedfood.getFoodTaxApplicable();
         if(foods!=null) {
             if (foods.size() > 0) {
                 for (FoodItemExtraTopping food : foods) {

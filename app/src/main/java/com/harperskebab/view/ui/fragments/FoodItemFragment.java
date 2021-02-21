@@ -195,6 +195,7 @@ public class FoodItemFragment extends BaseFragment {
                 cartItem.top_price="";
                 cartItem.item_size_id = "0";
                 cartItem.icon=food.getFoodIcon();
+                cartItem.food_tax_applicable=food.getFoodTaxApplicable();
                 cartItem.desc = food.getResPizzaDescription();
                 cartDao.Insert(cartItem);
             }

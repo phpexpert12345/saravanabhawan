@@ -56,6 +56,9 @@ public class CartItem {
     @ColumnInfo(name = "icon")
  @SerializedName("icon")
  public String icon;
+    @ColumnInfo(name="food_tax_applicable")
+ @SerializedName("food_tax_applicable")
+ public String food_tax_applicable;
 
 
 

@@ -125,6 +125,7 @@ public class CartFragment extends BaseFragment {
     double vatTax=0.0;
     double riderTipAmount=0.0;
     double totalAmount = 0.00;
+    double food_tax_amount=0.0;
 
     public CartFragment() {
     }
@@ -1532,11 +1533,28 @@ getCartItems();
 
             foodAdapter = new CartAdapter( cartItems, foodClicked,Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()));
             binding.recyclerViewOrderItems.setAdapter(foodAdapter);
+
             for(CartItem cartItem:cart_items){
+                double vat_tax=0.0;
                 if(cartItem.total_price!=null) {
+                    if(cartItem.food_tax_applicable!=null){
+                        if(!cartItem.food_tax_applicable.equalsIgnoreCase("")){
+                            vat_tax=Double.parseDouble(cartItem.food_tax_applicable);
+                          food_tax_amount+=(Double.parseDouble(cartItem.total_price)*vat_tax)/100;
+
+                        }
+                    }
                     totalAmount += Double.parseDouble(cartItem.total_price) * cartItem.quantity;
+
                 }
                 else{
+                    if(cartItem.food_tax_applicable!=null){
+                        if(!cartItem.food_tax_applicable.equalsIgnoreCase("")){
+                            vat_tax=Double.parseDouble(cartItem.food_tax_applicable);
+                            food_tax_amount+=(Double.parseDouble(cartItem.item_price)*vat_tax)/100;
+
+                        }
+                    }
                     totalAmount += Double.parseDouble(cartItem.item_price) * cartItem.quantity;
                 }
 
@@ -1555,8 +1573,16 @@ getCartItems();
         subTotalAmount = totalAmount - (Double.parseDouble(cartViewModel.getRestaurantDiscount().getValue()) + Double.parseDouble(cartViewModel.getCouponCodeDiscount().getValue()) + Double.parseDouble(cartViewModel.getLoyaltyCodeDiscount().getValue()));
         toPayPrice = subTotalAmount + deliveryCharge + packageFees + serviceFees + vatTax + riderTipAmount + foodTax + drinkTax;
         setValueInTextView(binding.billDetail.relativeLayoutToPay, binding.billDetail.textViewPay, languageViewModel.getLanguageResponse().getValue().getToPay(), binding.billDetail.textViewTotalPrice, toPayPrice, restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole());
-        binding.billDetail.textViewItem2.setVisibility(View.GONE);
-        binding.billDetail.textViewItem2Price.setVisibility(View.GONE);
+
+        if(food_tax_amount>0.0){
+
+            setValueInTextView(binding.billDetail.relativeLayout2, binding.billDetail.textViewItem2, languageViewModel.getLanguageResponse().getValue().getVatTax(), binding.billDetail.textViewItem2Price, food_tax_amount, restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole());
+
+        }
+        else{
+            binding.billDetail.textViewItem2.setVisibility(View.GONE);
+            binding.billDetail.textViewItem2Price.setVisibility(View.GONE);
+        }
         binding.textViewFinalAmountToPay.setText("Total Pay\n" +
                 Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole())
                 + " " +

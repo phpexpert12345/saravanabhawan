@@ -646,6 +646,7 @@ getCartItems();
                 cartItem.top_price = "";
                 cartItem.item_size_id = "0";
                 cartItem.desc = food.getResPizzaDescription();
+                cartItem.food_tax_applicable=food.getFoodTaxApplicable();
                 cartItem.icon=food.getFoodIcon();
                 cartDao.Insert(cartItem);
             }

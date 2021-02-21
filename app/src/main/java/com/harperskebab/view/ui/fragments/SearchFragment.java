@@ -182,6 +182,7 @@ InitateSearchItemFragment(food);
                 cartItem.item_size_id = "0";
                 cartItem.desc = food.getResPizzaDescription();
                 cartItem.icon=food.getFoodIcon();
+                cartItem.food_tax_applicable=food.getFoodTaxApplicable();
                 cartDao.Insert(cartItem);
             }
 
