@@ -29,6 +29,16 @@ public class DeliveryArea {
     private String postcodeLong;
     @SerializedName("shipping_charge")
     private String shippingCharge;
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    @SerializedName("error_msg")
+    private String errorMsg;
 
     public String getAdminDistrict() {
         return adminDistrict;

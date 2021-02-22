@@ -50,7 +50,7 @@ public class OfferFragment extends BaseFragment {
         }
         BranchId=  PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("BranchId","2");
         restaurantOfferViewModel = ViewModelFactory.getInstance(getActivity()).create(RestaurantOfferViewModel.class);
-        restaurantOfferViewModel.getRestaurantOffers(getActivity(), Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true),BranchId);
+        restaurantOfferViewModel.getRestaurantOffers(getActivity(), Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true),"7");
         setHasOptionsMenu(true);
     }
 
@@ -64,11 +64,24 @@ public class OfferFragment extends BaseFragment {
         restaurantOfferViewModel.getRestaurantDiscountCoupon().observe(this, restaurantDiscountCoupons -> {
 
             if (restaurantDiscountCoupons != null) {
-                //todo
-                RestaurantOfferAdapter restaurantOfferAdapter = new RestaurantOfferAdapter(getActivity(), restaurantDiscountCoupons);
-                binding.recyclerViewOffer.setAdapter(restaurantOfferAdapter);
+                if(restaurantDiscountCoupons.size()>0){
+                    if(restaurantDiscountCoupons.get(0).getError().equalsIgnoreCase("1")){
+                        binding.txtNoOffer.setVisibility(View.VISIBLE);
+                        binding.txtNoOffer.setText(restaurantDiscountCoupons.get(0).getErrorMsg());
+                    }
+                    else{
+                        binding.txtNoOffer.setVisibility(View.GONE);
+                        RestaurantOfferAdapter restaurantOfferAdapter = new RestaurantOfferAdapter(getActivity(), restaurantDiscountCoupons);
+                        binding.recyclerViewOffer.setAdapter(restaurantOfferAdapter);
 
-                restaurantOfferViewModel.getRestaurantDiscountCoupon().removeObservers(this);
+                        restaurantOfferViewModel.getRestaurantDiscountCoupon().removeObservers(this);
+                    }
+                }
+                else{
+                    binding.txtNoOffer.setVisibility(View.VISIBLE);
+                }
+                //todo
+
             }
         });
 

@@ -1,7 +1,6 @@
 package com.harperskebab.utils;
 
 public class Constant {
-
     public static class Url {
                 public static String BASE_URL = "https://dmd.foodsdemo.com/restaurantAPI/";
 //        public static String BASE_URL = "http://kartika.takeaway-website.com/restaurantAPI/";

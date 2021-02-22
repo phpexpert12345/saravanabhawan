@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".view.ui.fragments.more.OfferFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayoutContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -24,7 +24,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/offer_list_item_row" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/txt_no_offer"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="test"
+            android:textSize="@dimen/_18sdp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

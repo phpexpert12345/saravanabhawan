@@ -72,7 +72,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
             }else if (order.getOrderStatusMsg().equalsIgnoreCase("delivered")){
                 holder.getBinding().buttonOrderTrack.setVisibility(View.VISIBLE);
             } else {
-                holder.getBinding().buttonOrderTrack.setVisibility(View.VISIBLE);
+                holder.getBinding().buttonOrderTrack.setVisibility(View.GONE);
             }
             holder.getBinding().buttonOrderTrack.setOnClickListener(v -> ontrackClick.onClick(position, order));
             holder.getBinding().getRoot().setOnClickListener(v -> onItemClick.onClick(position, order));

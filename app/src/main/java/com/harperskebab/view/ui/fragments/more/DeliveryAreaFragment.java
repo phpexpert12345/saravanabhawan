@@ -51,7 +51,7 @@ public class DeliveryAreaFragment extends BaseFragment {
         }
         BranchId=  PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("BranchId","2");
         deliveryAreaViewModel = ViewModelFactory.getInstance(getActivity()).create(DeliveryAreaViewModel.class);
-        deliveryAreaViewModel.getDeliveryArea(getActivity(), Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "1", BranchId,new NetworkOperations(true));
+        deliveryAreaViewModel.getDeliveryArea(getActivity(), Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "1", "7",new NetworkOperations(true));
         setHasOptionsMenu(true);
     }
 
@@ -65,11 +65,22 @@ public class DeliveryAreaFragment extends BaseFragment {
         deliveryAreaViewModel.getDeliveryAreas().observe(this, deliveryAreas -> {
 
             if (deliveryAreas != null) {
-                DeliveryAreaAdapter deliveryAreaAdapter = new DeliveryAreaAdapter(getActivity(), deliveryAreas, Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()));
+                if(deliveryAreas.size()>0) {
+                    if(deliveryAreas.get(0).getError().equalsIgnoreCase("1")){
+                        binding.txtNoDelivery.setVisibility(View.VISIBLE);
+                        binding.txtNoDelivery.setText(deliveryAreas.get(0).getErrorMsg());
+                    }
+                    else {
+                        DeliveryAreaAdapter deliveryAreaAdapter = new DeliveryAreaAdapter(getActivity(), deliveryAreas, Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()));
 
-                binding.recyclerViewDeliveryArea.setAdapter(deliveryAreaAdapter);
+                        binding.recyclerViewDeliveryArea.setAdapter(deliveryAreaAdapter);
 
-                deliveryAreaViewModel.getDeliveryAreas().removeObservers(this);
+                        deliveryAreaViewModel.getDeliveryAreas().removeObservers(this);
+                    }
+                }
+                else{
+                    binding.txtNoDelivery.setVisibility(View.VISIBLE);
+                }
             }
         });
 

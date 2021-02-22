@@ -190,7 +190,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgFoodType.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getFoodType())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgFoodType);
         }
         if (food.getFoodTypeNon().equalsIgnoreCase("")){
@@ -199,7 +199,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgFoodTypeNon.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getFoodTypeNon())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgFoodTypeNon);
         }
         if (food.getFoodPopular().equalsIgnoreCase("")){
@@ -208,7 +208,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgFoodPopuler.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getFoodPopular())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgFoodPopuler);
         }
         if (food.getFoodSpicy().equalsIgnoreCase("")){
@@ -217,7 +217,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgFoodSpicy.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getFoodSpicy())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgFoodSpicy);
         }
         if (food.getMidFoodSpicy().equalsIgnoreCase("")){
@@ -226,7 +226,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgMidFoodSpicy.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getMidFoodSpicy())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgMidFoodSpicy);
         }
         if (food.getVeryFoodSpicy().equalsIgnoreCase("")){
@@ -235,7 +235,7 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgVeryFoodSpicy.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getVeryFoodSpicy())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgVeryFoodSpicy);
         }
         if (food.getGreenFoodSpicy().equalsIgnoreCase("")){
@@ -244,12 +244,12 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
             imgGreenFoodSpicy.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(food.getGreenFoodSpicy())
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.app_logo)
                     .into(imgGreenFoodSpicy);
         }
         Glide.with(context)
                 .load(food.getFoodIcon())
-                .placeholder(R.drawable.loading)
+                .placeholder(R.drawable.app_logo)
                 .into(imgProduct);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,6 +270,9 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
                     lLinearLayoutCountDetails.setVisibility(View.VISIBLE);
                 }
                 textViewFoodCount.setText(String.valueOf(count));
+                if(food.getExtraavailable().equalsIgnoreCase("yes")){
+                    dialog.dismiss();
+                }
                 onPlusClick.onClick(position, food);
             }
         });
@@ -292,8 +295,12 @@ holder.getBinding().layParent.setOnClickListener(new View.OnClickListener() {
         textViewPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 count++;
                 textViewFoodCount.setText(String.valueOf(count));
+                if(food.getExtraavailable().equalsIgnoreCase("yes")){
+                    dialog.dismiss();
+                }
                 onPlusClick.onClick(position, food);
             }
         });
