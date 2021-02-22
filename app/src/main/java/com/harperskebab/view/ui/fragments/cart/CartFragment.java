@@ -1522,6 +1522,7 @@ getCartItems();
     List<CartItem> cartItems=new ArrayList<>();
     private void getCartItems(){
         totalAmount=0.0;
+        food_tax_amount=0.0;
         CustomerAppDatabase customerAppDatabase=CustomerAppDatabase.getDatabase(getContext());
         CartDao cartDao=customerAppDatabase.cartDao();
         List<CartItem> cart_items=cartDao.getCartItems();
@@ -1541,6 +1542,7 @@ getCartItems();
                         if(!cartItem.food_tax_applicable.equalsIgnoreCase("")){
                             vat_tax=Double.parseDouble(cartItem.food_tax_applicable);
                           food_tax_amount+=(Double.parseDouble(cartItem.total_price)*vat_tax)/100;
+                          food_tax_amount=food_tax_amount*cartItem.quantity;
 
                         }
                     }
@@ -1552,6 +1554,7 @@ getCartItems();
                         if(!cartItem.food_tax_applicable.equalsIgnoreCase("")){
                             vat_tax=Double.parseDouble(cartItem.food_tax_applicable);
                             food_tax_amount+=(Double.parseDouble(cartItem.item_price)*vat_tax)/100;
+                            food_tax_amount=food_tax_amount*cartItem.quantity;
 
                         }
                     }

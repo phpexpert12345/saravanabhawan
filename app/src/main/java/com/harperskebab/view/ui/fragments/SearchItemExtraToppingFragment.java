@@ -141,6 +141,7 @@ public class SearchItemExtraToppingFragment extends BaseFragment{
         CustomerAppDatabase cartDatabase = CustomerAppDatabase.getDatabase(getContext());
         CartDao cartDao = cartDatabase.cartDao();
         cartDao.Update(cartItem);
+        homeActivity.setupBadge();
 
     }
     private void AddCartItem(List<FoodItemExtraTopping>foods){
@@ -230,7 +231,7 @@ public class SearchItemExtraToppingFragment extends BaseFragment{
             }
             cartDao.Insert(cartItem);
         }
-
+        homeActivity.setupBadge();
     }
     private void getExtraTops(){
         NetworkOperations call=  new NetworkOperations(true);
