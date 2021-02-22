@@ -1492,9 +1492,9 @@ getCartItems();
                     firstName = fullName;
                     lastname = "";
                 }
-
+String branch_id=PreferenceManager.getDefaultSharedPreferences(getContext()).getString("BranchId", "");
                 userViewModel.signUp(getActivity(), firstName, lastname, emailID, password, phone, "", "", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE,
-                        "", "", new NetworkOperations(true));
+                        "", "",branch_id, new NetworkOperations(true));
 
                 userViewModel.getSignUpResponse().observe(this, signUpResponse -> {
 

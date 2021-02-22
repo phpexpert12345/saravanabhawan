@@ -16,6 +16,7 @@ import com.harperskebab.utils.PopMessage;
 import com.harperskebab.utils.Validation;
 import com.harperskebab.view.ui.fragments.BaseFragment;
 import com.harperskebab.viewmodel.ContactUsViewModel;
+import com.harperskebab.viewmodel.UserViewModel;
 import com.harperskebab.viewmodel.ViewModelFactory;
 
 public class ContactUsFragment extends BaseFragment {
@@ -23,6 +24,7 @@ public class ContactUsFragment extends BaseFragment {
 
     private FragmentContactUsBinding binding;
     private ContactUsViewModel contactUsViewModel;
+    private UserViewModel userViewModel;
 
     private int containerID;
 
@@ -55,13 +57,21 @@ public class ContactUsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         getActivity().setTitle(languageViewModel.getLanguageResponse().getValue().getContactUs());
         binding = FragmentContactUsBinding.inflate(inflater, container, false);
-
+        userViewModel = ViewModelFactory.getInstance(getContext()).create(UserViewModel.class);
         binding.textViewRestaurantName.setText(restaurantViewModel.getRestaurant().getValue().getRestaurantName());
         binding.textViewAddress.setText(restaurantViewModel.getRestaurant().getValue().getRestaurantAddress());
         binding.textViewEmail.setText(restaurantViewModel.getRestaurant().getValue().getRestaurantContactEmail());
         binding.textViewCall.setText(restaurantViewModel.getRestaurant().getValue().getRestaurantContactMobile());
-
         binding.buttonSubmit.setOnClickListener(this::onClick);
+        restaurantViewModel.getRestaurant().observe(this, restaurant ->{
+        });
+        userViewModel.getSignInResponse().observeForever(signInResponse -> {
+           if(signInResponse.getSuccess()==0) {
+               binding.editTextName.setText(signInResponse.getUserName());
+               binding.editTextMobile.setText(signInResponse.getUserPhone());
+               binding.editTextEmail.setText(signInResponse.getUserEmail());
+           }
+        });
         return binding.getRoot();
     }
 

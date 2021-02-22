@@ -228,7 +228,8 @@ public interface RFInterface {
             @Query("api_key") String api_key,
             @Query("lang_code") String lang_code,
             @Query("device_id") String device_id,
-            @Query("device_platform") String device_platform
+            @Query("device_platform") String device_platform,
+            @Query("branch_id")String branch_id
     );
 
     @GET(Constant.Url.GET_BRANCH)

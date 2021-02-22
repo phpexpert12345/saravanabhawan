@@ -80,7 +80,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder> {
             }else {
                 DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 //                binding.txtTotalPrice.setText(Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()) + REAL_FORMATTER.format(total));
-                float str = food.getFoodCount() * Float.parseFloat(food.getRestaurantPizzaItemPrice());
+                float str = Float.parseFloat(food.getRestaurantPizzaItemPrice());
                 holder.getBinding().textViewFoodPrice.setText(currencySymbol + " " + REAL_FORMATTER.format(str));
             }
             if (food.getFoodType().equalsIgnoreCase("")){

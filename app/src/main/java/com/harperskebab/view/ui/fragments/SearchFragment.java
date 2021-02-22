@@ -60,8 +60,14 @@ public class SearchFragment extends BaseFragment{
             foods=getArguments().getParcelableArrayList("category");
             id=getArguments().getInt("id",0);
         }
+        List<Food>foodList=new ArrayList<>();
         if(foods.size()>0){
-            setSearchAdapter();
+            for(int i=0;i<foods.size();i++){
+                foodList.addAll(foods.get(i).subItemsRecord);
+            }
+            if(foodList.size()>0) {
+               setSearchItemAdapter(foodList);
+            }
         }
         return binding.getRoot();
     }

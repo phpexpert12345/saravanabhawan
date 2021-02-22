@@ -163,6 +163,7 @@ public class AddressFromPostCodeActivity extends BaseActivity {
 //                    }
 //                }
                 if (value.length() >1) {
+                    value=value.replaceAll(" ","%20");
                     postalCode=value;
                     String url=postcode_auto_API_URL+value+"?api-key="+postcode_auto_secret_administration_API_Key+"&TOP=1000";
                     Log.i("url",url);

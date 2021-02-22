@@ -41,8 +41,9 @@
                 android:hint="ENTER YOUR POST CODE"
                 android:padding="10dp"
                 android:textAllCaps="true"
+
                 android:layout_gravity="center"
-                android:inputType="textCapCharacters"
+                android:inputType="textCapWords"
                 android:textColor="#0F090D"
                 android:textColorHint="#0F090D"
                 android:singleLine="true" />

@@ -95,8 +95,10 @@ String address;
         binding.recyclerViewBranchLocation.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         branchViewModel.getRestaurantBranches().observe(this, restaurantBranches -> {
-
             if (restaurantBranches != null) {
+                bramchId = String.valueOf(restaurantBranches.get(0).getId());
+                branch_address=restaurantBranches.get(0).getRestaurantBranchAddress();
+                branch_name=restaurantBranches.get(0).getRestaurantBranchName();
                 restaurantBranchAfterShorts = new ArrayList<>();
                 for (int i = 0; i < restaurantBranches.size(); i++) {
 //                    RestaurantBranchAfterShort restaurantBranchAfterShort = new RestaurantBranchAfterShort();

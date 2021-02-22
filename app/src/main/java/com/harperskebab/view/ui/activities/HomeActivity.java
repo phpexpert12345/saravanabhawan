@@ -628,7 +628,7 @@ else{
                 }
 
                 userViewModel.signUp(HomeActivity.this, firstName, lastname, emailID, password, phone, "", "", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE,
-                        "", "", new NetworkOperations(true));
+                        "", "",branchId, new NetworkOperations(true));
 
                 userViewModel.getSignUpResponse().observe(this, signUpResponse -> {
 

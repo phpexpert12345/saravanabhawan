@@ -71,11 +71,11 @@ public class UserViewModel extends BaseViewModel {
 
     @SuppressLint("CheckResult")
     public void signUp(Context context, String first_name, String last_name, String email, String password, String phone, String country, String referral_code,
-                       String api_key, String lang_code, String device_id, String device_platform, NetworkOperations nwCall) {
+                       String api_key, String lang_code, String device_id, String device_platform,String branch_id, NetworkOperations nwCall) {
 
         nwCall.onStart(context, "");
 
-        rfInterface.signUp(convertBase64(first_name), convertBase64(last_name), email, password, phone, country, referral_code, api_key, lang_code, device_id, device_platform).subscribeOn(Schedulers.io())
+        rfInterface.signUp(convertBase64(first_name), convertBase64(last_name), email, password, phone, country, referral_code, api_key, lang_code, device_id, device_platform,branch_id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((signUpResponse) -> onSuccessSignUp(signUpResponse, nwCall), throwable -> onErrorSignUp(throwable, nwCall));
 
