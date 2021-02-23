@@ -413,9 +413,11 @@ else{
 
             } else if (position == 11) {
                 showMessage("Alert", "Are you sure want to logout ?", "YES", "NO", dialogInterface -> {
-                    userViewModel.setSignInResponse(null);
-//                    finish();
                     dialogInterface.dismiss();
+                    userViewModel.setSignInResponse(null);
+
+//                    finish();
+
                     isLogin = false;
                 }, dialogInterface -> {
                     dialogInterface.dismiss();

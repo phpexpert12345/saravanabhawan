@@ -74,6 +74,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
             } else {
                 holder.getBinding().buttonOrderTrack.setVisibility(View.GONE);
             }
+            if(order.getOrderStatusMsg().equalsIgnoreCase("Cancelled")){
+                holder.getBinding().buttonCancel.setVisibility(View.GONE);
+            }
+            else{
+                holder.getBinding().buttonCancel.setVisibility(View.VISIBLE);
+            }
             holder.getBinding().buttonOrderTrack.setOnClickListener(v -> ontrackClick.onClick(position, order));
             holder.getBinding().getRoot().setOnClickListener(v -> onItemClick.onClick(position, order));
 
