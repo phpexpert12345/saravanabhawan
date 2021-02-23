@@ -17,8 +17,8 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_circle_filled"/>
         <View
-            android:layout_width="3sp"
-            android:layout_height="30sp"
+            android:layout_width="@dimen/_3sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
             android:background="@color/colorWhite"/>
     </LinearLayout>
@@ -38,7 +38,16 @@
             android:textColor="@color/colorWhite"
             android:fontFamily="@font/montserrat_semi_bold"
             android:text="@string/order_status"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_18sdp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewdesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="@string/order_status"
+            android:textSize="@dimen/_15sdp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewDateTime"

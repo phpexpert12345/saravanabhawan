@@ -137,6 +137,17 @@ public class Restaurant {
     @SerializedName("Postcode_Lookup_From_API")
     private String Postcode_Lookup_From_API;
 
+    public String getBranch_Available() {
+        return Branch_Available;
+    }
+
+    public void setBranch_Available(String branch_Available) {
+        Branch_Available = branch_Available;
+    }
+
+    @SerializedName("Branch_Available")
+    private String Branch_Available;
+
     public String getPostcode_Lookup_From_API() {
         return Postcode_Lookup_From_API;
     }

@@ -66,11 +66,13 @@ public class ContactUsFragment extends BaseFragment {
         restaurantViewModel.getRestaurant().observe(this, restaurant ->{
         });
         userViewModel.getSignInResponse().observeForever(signInResponse -> {
-           if(signInResponse.getSuccess()==0) {
-               binding.editTextName.setText(signInResponse.getUserName());
-               binding.editTextMobile.setText(signInResponse.getUserPhone());
-               binding.editTextEmail.setText(signInResponse.getUserEmail());
-           }
+            if(signInResponse!=null) {
+                if (signInResponse.getSuccess() == 0) {
+                    binding.editTextName.setText(signInResponse.getUserName());
+                    binding.editTextMobile.setText(signInResponse.getUserPhone());
+                    binding.editTextEmail.setText(signInResponse.getUserEmail());
+                }
+            }
         });
         return binding.getRoot();
     }
@@ -115,7 +117,7 @@ public class ContactUsFragment extends BaseFragment {
                     if (contactUsResponse != null) {
                         if (contactUsResponse.getError().equals(1L)) {
 
-                            showMessage("Alert", contactUsResponse.getSuccessMsg(), "OK", "Close", dialogInterface -> {
+                            showMessage("Alert", contactUsResponse.getError_msg(), "OK", "Close", dialogInterface -> {
                                 goBack();
                                 dialogInterface.dismiss();
                             }, dialogInterface -> {

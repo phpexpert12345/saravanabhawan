@@ -80,11 +80,11 @@ public class PayLaterOrdersListFragment extends BaseFragment {
                 );
                 binding.recyclerViewPayLaterOrders.setAdapter(payLaterOrderAdapter);
                 binding.linearLayoutContent.setVisibility(View.VISIBLE);
-                binding.emptyView.getRoot().setVisibility(View.GONE);
+                binding.emptyView.linearEmpty.setVisibility(View.GONE);
             }else {
                 binding.linearLayoutContent.setVisibility(View.GONE);
-                binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                binding.emptyView.textViewErrorMessage.setText("Sorry! You have not placed any order yet");
+                binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                binding.emptyView.txtEmpty.setText("Sorry! You have not placed any order yet");
             }
 
         });

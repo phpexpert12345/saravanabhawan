@@ -89,6 +89,7 @@ public class HomeActivity extends BaseActivity implements DuoMenuView.OnMenuClic
     private FragmentManager fragmentManager = null;
     boolean isCount = false;
     private UserViewModel userViewModel;
+    int is_pay_later=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,9 @@ public class HomeActivity extends BaseActivity implements DuoMenuView.OnMenuClic
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.header.toolbar);
+        binding.header.cartLayout.imgCart.setOnClickListener(v->{
+            startActivity(new Intent(HomeActivity.this, CartActivity.class));
+        });
         setTitle("");
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -134,6 +138,12 @@ else{
             }else {
                 binding.header.imgLanguage.setVisibility(View.GONE);
             }
+            if(restaurant.getPayLaterAvailable().equalsIgnoreCase("yes")){
+                is_pay_later=1;
+            }
+            else{
+                is_pay_later=0;
+            }
         });
        String branchName  = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getString("BRANCH_NAME", "");
         String branchAddress  = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getString("BRANCH_ADDRESS", "");
@@ -148,6 +158,18 @@ else{
                 startActivity(intent);
             }
         });
+//        if(restaurantViewModel.getRestaurant().getValue()!=null){
+//            if(restaurantViewModel.getRestaurant().getValue().getLanguage_Available().equalsIgnoreCase("yes")){
+//                binding.header.imgLanguage.setVisibility(View.VISIBLE);
+//            }
+//            else{
+//                binding.header.imgLanguage.setVisibility(View.GONE);
+//            }
+//
+//        }
+//        else{
+//            binding.header.imgLanguage.setVisibility(View.GONE);
+//        }
         binding.header.imgLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,6 +218,7 @@ else{
         languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
         frontBannerViewModel.getFrontBanner(HomeActivity.this, "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, Constant.API.SLIDER, new NetworkOperations(false));
         foodCategoryViewModel.getFoodCategory(HomeActivity.this, "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(false));
+        setupBadge();
     }
 
     @Override
@@ -206,36 +229,36 @@ else{
 //
 //        View count = menu.findItem(R.id.option_cart).getActionView();
 //       TextView notifCount = (TextView) count.findViewById(R.id.hotlist_hot);
-        getMenuInflater().inflate(R.menu.activity_home_menu_option, menu);
-
-        final MenuItem menuItem = menu.findItem(R.id.option_cart);
-
-        View actionView = menuItem.getActionView();
-        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
-        setupBadge();
-        actionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onOptionsItemSelected(menuItem);
-            }
-        });
+//        getMenuInflater().inflate(R.menu.activity_home_menu_option, menu);
+//
+//        final MenuItem menuItem = menu.findItem(R.id.option_cart);
+//
+//        View actionView = menuItem.getActionView();
+//
+//        actionView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onOptionsItemSelected(menuItem);
+//            }
+//        });
 
         return true;
     }
 
     public void setupBadge() {
         isCount=true;
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
         String str = preferences.getString("ITEM_COUNT", "");
         CustomerAppDatabase customerAppDatabase=CustomerAppDatabase.getDatabase(HomeActivity.this);
         CartDao cartDao=customerAppDatabase.cartDao();
         List<CartItem> cart_items=cartDao.getCartItems();
         if(cart_items.size()>0){
-            textCartItemCount.setVisibility(View.VISIBLE);
-            textCartItemCount.setText(String.valueOf(cart_items.size()));
+            binding.header.cartLayout.cartBadge.setVisibility(View.VISIBLE);
+            binding.header.cartLayout.cartBadge.setText(String.valueOf(cart_items.size()));
         }
         else{
-            textCartItemCount.setVisibility(View.GONE);
+            binding.header.cartLayout.cartBadge.setVisibility(View.GONE);
         }
 //        isCount = true;
 //        if (!str.equalsIgnoreCase("")) {
@@ -273,9 +296,9 @@ else{
         callAPI();
         SharedPreferences preferencess = PreferenceManager.getDefaultSharedPreferences(this);
         String strLangImage = preferencess.getString("LANG_IMAGE", "");
-        Glide.with(HomeActivity.this)
-                .load(strLangImage)
-                .into(binding.header.imgLanguage);
+//        Glide.with(HomeActivity.this)
+//                .load(strLangImage)
+//                .into(binding.header.imgLanguage);
         languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
 
         languageViewModel.getLanguageResponse().observe(HomeActivity.this, languageResponse -> {
@@ -454,6 +477,11 @@ else{
                 ArrayList<String> arr = new ArrayList<>();
                 arr.add(languageViewModel.getLanguageResponse().getValue().getMyAccount());
                 arr.add(languageViewModel.getLanguageResponse().getValue().getMyOrder());
+
+
+//                if(restaurantViewModel.getRestaurant().getValue().getPayLaterAvailable().equalsIgnoreCase("yes")){
+//                    arr.add("Pay Later");
+//                }
                 arr.add("Pay Later");
                 arr.add(languageViewModel.getLanguageResponse().getValue().getMyAddress());
                 arr.add(languageViewModel.getLanguageResponse().getValue().getMyReview());

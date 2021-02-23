@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.harperskebab.R;
 import com.harperskebab.databinding.FragmentTicketBinding;
 import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
@@ -71,7 +72,7 @@ public class TicketFragment extends BaseFragment {
                 if (ticketResponse.getComplaintsHistory().get(0).getError().equals("0")) {
 
                     binding.linearLayoutContent.setVisibility(View.VISIBLE);
-                    binding.emptyView.getRoot().setVisibility(View.GONE);
+                    binding.emptyView.linearEmpty.setVisibility(View.GONE);
 
                     ticketAdapter = new TicketAdapter(getActivity(), ticketResponse.getComplaintsHistory());
                     binding.recyclerViewTicket.setAdapter(ticketAdapter);
@@ -79,11 +80,16 @@ public class TicketFragment extends BaseFragment {
                 } else {
 
                     binding.linearLayoutContent.setVisibility(View.GONE);
-                    binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                    binding.emptyView.textViewErrorMessage.setText(ticketResponse.getComplaintsHistory().get(0).getError_msg());
+                    binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                    binding.emptyView.imgEmpty.setImageResource(R.drawable.complaints_empty);
+                    binding.emptyView.txtEmpty.setText(ticketResponse.getComplaintsHistory().get(0).getError_msg());
 
 
                 }
+            }
+            else{
+                binding.linearLayoutContent.setVisibility(View.GONE);
+                binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
             }
 
         });

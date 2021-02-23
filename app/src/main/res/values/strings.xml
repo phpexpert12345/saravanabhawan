@@ -163,6 +163,7 @@
     <string name="deposit_amount_for_booking_10">Deposit Amount for Booking(10%):</string>
 
     <string name="do_you_have_an_allergy">Do you have an allergy?</string>
+    <string name="ready_at">Order ready at</string>
 
     <string name="eat_in">Eat-In</string>
 
@@ -242,7 +243,7 @@
     <string name="manage_ticket">Manage Ticket</string>
 
     <array name="menuOptions">
-        <item>SignIn</item>
+        <item>Log in</item>
         <item>Register</item>
         <item>Contact Us/Help</item>
         <item>About Us</item>

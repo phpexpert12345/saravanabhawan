@@ -53,7 +53,7 @@
     <include
         android:id="@+id/emptyView"
         layout="@layout/empty_view"
-        android:visibility="gone" />
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonAddAddress"

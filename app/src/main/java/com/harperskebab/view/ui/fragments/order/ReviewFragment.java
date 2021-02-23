@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.harperskebab.R;
 import com.harperskebab.databinding.FragmentReviewBinding;
 import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
@@ -69,14 +70,13 @@ public class ReviewFragment extends BaseFragment {
                     if (restaurantReviews.getReview().getRestaurantReviews().size() == 0) {
 
                         binding.linearLayoutContent.setVisibility(View.GONE);
-                        binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                        binding.emptyView.textViewErrorMessage.setText(restaurantReviews.getSuccess_msg());
+                        binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                        binding.emptyView.txtEmpty.setText(restaurantReviews.getSuccess_msg());
+                        binding.emptyView.imgEmpty.setImageResource(R.drawable.ic_review_empty);
 
                     } else {
-
                         binding.linearLayoutContent.setVisibility(View.VISIBLE);
-                        binding.emptyView.getRoot().setVisibility(View.GONE);
-
+                        binding.emptyView.linearEmpty.setVisibility(View.GONE);
                         ReviewAdapter reviewAdapter = new ReviewAdapter(getActivity(), restaurantReviews.getReview().getRestaurantReviews());
                         binding.recyclerViewReviews.setAdapter(reviewAdapter);
                         reviewViewModel.getReviewsResponse().removeObservers(this);
@@ -84,10 +84,17 @@ public class ReviewFragment extends BaseFragment {
                 } else {
 
                     binding.linearLayoutContent.setVisibility(View.GONE);
-                    binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                    binding.emptyView.textViewErrorMessage.setText(restaurantReviews.getSuccess_msg());
+                    binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                    binding.emptyView.txtEmpty.setVisibility(View.VISIBLE);
+                    binding.emptyView.imgEmpty.setImageResource(R.drawable.ic_review_empty);
+                    binding.emptyView.txtEmpty.setText(restaurantReviews.getSuccess_msg());
 
                 }
+            }
+            else{
+                binding.linearLayoutContent.setVisibility(View.GONE);
+                binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                binding.emptyView.imgEmpty.setImageResource(R.drawable.ic_review_empty);
             }
 
         });

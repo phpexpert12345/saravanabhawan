@@ -36,6 +36,7 @@ public class TrackOrderAdapter extends RecyclerView.Adapter<TrackOrderViewHolder
         OrderTrackHistory orderTrackHistory = orderTrackHistories.get(position);
         try {
             holder.getBinding().textViewStatus.setText(orderTrackHistory.getOrderStatus());
+            holder.getBinding().textViewdesc.setText(orderTrackHistory.getOrderStatusMessage());
             holder.getBinding().textViewDateTime.setText(orderTrackHistory.getOrderStatusDate() + "/ " + orderTrackHistory.getOrderStatusTime());
 
         } catch (Exception e) {

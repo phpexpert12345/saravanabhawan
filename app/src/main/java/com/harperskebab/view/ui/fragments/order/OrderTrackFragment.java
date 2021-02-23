@@ -75,6 +75,8 @@ public class OrderTrackFragment extends BaseFragment {
         binding.recyclerViewOrderTrack.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewOrderItems.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
+
          // Default: true
 
         trackOrderViewModel.getTrackOrderResponse().observe(this, trackOrderResponse -> {
@@ -87,10 +89,19 @@ public class OrderTrackFragment extends BaseFragment {
                 binding.textViewOrderNumber.setText(
                         orderDetailItem.getOrderNumber()
                 );
+                binding.textViewOrderTypeAddress.setText(orderDetailItem.getCustomerNewAddress());
 
                 binding.textViewOrderDate.setText(trackOrderResponse.getOrderDetailItem().get(0).getOrders().getOrderViewResult().get(0).getOrderDate() + " " + trackOrderResponse.getOrderDetailItem().get(0).getOrders().getOrderViewResult().get(0).getOrderTime());
                 binding.txtOrderType.setText(trackOrderResponse.getOrderDetailItem().get(0).getOrders().getOrderViewResult().get(0).getOrderType());
                 List<OrderFoodItem> orderFoodItem = trackOrderResponse.getOrderFoodItem();
+                if(orderDetailItem.getStatus().equalsIgnoreCase("Delivered")){
+                    binding.linearOrderReady.setVisibility(View.VISIBLE);
+                    binding.orderDate.setText(orderDetailItem.getOrderReadyTime());
+
+                }
+                else{
+                    binding.linearOrderReady.setVisibility(View.GONE);
+                }
                 StringBuilder foodItems = new StringBuilder();
                 double price=0.0;
 //                for (OrderFoodItem foodItem : orderFoodItem) {

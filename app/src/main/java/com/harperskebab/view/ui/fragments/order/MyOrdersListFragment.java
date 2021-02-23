@@ -83,12 +83,13 @@ public class MyOrdersListFragment extends BaseFragment {
                 if (orderListResponse.getOrders()==null) {
 
                     binding.linearLayoutContent.setVisibility(View.GONE);
-                    binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                    binding.emptyView.textViewErrorMessage.setText(orderListResponse.getSuccess_msg());
+                    binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                    binding.emptyView.txtEmpty.setText(orderListResponse.getSuccess_msg());
+                    binding.emptyView.imgEmpty.setImageResource(R.drawable.placed_order_empty);
                 } else {
 
                     binding.linearLayoutContent.setVisibility(View.VISIBLE);
-                    binding.emptyView.getRoot().setVisibility(View.GONE);
+                    binding.emptyView.linearEmpty.setVisibility(View.GONE);
 
                     orderAdapter = new OrderAdapter(
                             getActivity(), orderListResponse.getOrders().getOrder(), onItemClick, onTrackClick, onCancelClick,onReorderClick,

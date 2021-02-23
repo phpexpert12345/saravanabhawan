@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.harperskebab.R;
 import com.harperskebab.databinding.FragmentDeliveryAreaBinding;
 import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
@@ -67,10 +68,12 @@ public class DeliveryAreaFragment extends BaseFragment {
             if (deliveryAreas != null) {
                 if(deliveryAreas.size()>0) {
                     if(deliveryAreas.get(0).getError().equalsIgnoreCase("1")){
-                        binding.txtNoDelivery.setVisibility(View.VISIBLE);
-                        binding.txtNoDelivery.setText(deliveryAreas.get(0).getErrorMsg());
+                        binding.linearEmpty.setVisibility(View.VISIBLE);
+                        binding.txtEmpty.setText(deliveryAreas.get(0).getErrorMsg());
+                        binding.imgEmpty.setImageResource(R.drawable.delivery_area);
                     }
                     else {
+                        binding.linearEmpty.setVisibility(View.GONE);
                         DeliveryAreaAdapter deliveryAreaAdapter = new DeliveryAreaAdapter(getActivity(), deliveryAreas, Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()));
 
                         binding.recyclerViewDeliveryArea.setAdapter(deliveryAreaAdapter);
@@ -79,7 +82,7 @@ public class DeliveryAreaFragment extends BaseFragment {
                     }
                 }
                 else{
-                    binding.txtNoDelivery.setVisibility(View.VISIBLE);
+                    binding.linearEmpty.setVisibility(View.GONE);
                 }
             }
         });

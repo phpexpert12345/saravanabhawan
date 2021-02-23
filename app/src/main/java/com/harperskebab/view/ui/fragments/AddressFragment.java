@@ -93,11 +93,12 @@ public class AddressFragment extends BaseFragment {
                     showNewAddressDialog();
 
                     binding.constraintLayoutContent.setVisibility(View.GONE);
-                    binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-                    binding.emptyView.textViewErrorMessage.setText(addressResponse.getSuccessMsg());
+                    binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+                    binding.emptyView.txtEmpty.setText(addressResponse.getSuccessMsg());
+                    binding.emptyView.imgEmpty.setImageResource(R.drawable.address_empty);
                 } else {
                     binding.constraintLayoutContent.setVisibility(View.VISIBLE);
-                    binding.emptyView.getRoot().setVisibility(View.GONE);
+                    binding.emptyView.linearEmpty.setVisibility(View.GONE);
                 }
                 addressAdapter = new AddressAdapter(getActivity(), addressResponse.getAddress().getDeliveryaddress(), onDeleteClick);
                 binding.recyclerViewAddress.setAdapter(addressAdapter);

@@ -2,11 +2,13 @@ package com.harperskebab.view.ui.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
 import com.harperskebab.databinding.ActivityPolicyBinding;
+import com.harperskebab.utils.Constant;
 
 public class PolicyActivity extends BaseActivity {
     private static final String TAG = "PolicyActivity";
@@ -50,7 +52,9 @@ public class PolicyActivity extends BaseActivity {
     }
 
     private void initiateContactUsFragment() {
-        binding.webView.loadUrl("https://www.dmd.foodsdemo.com/singleresAPI/privacy_statement_web.php?api_key=foodkey&lang_code=en");
+        String url= Constant.Url.BASE_URL+"privacy_statement_web.php";
+        binding.webView.setWebViewClient(new WebViewClient());
+        binding.webView.loadUrl(url);
     }
 
 }

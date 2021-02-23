@@ -45,7 +45,6 @@ public class ContactUsActivity extends BaseActivity {
     }
 
     private void setupView() {
-
         initiateContactUsFragment();
 
     }

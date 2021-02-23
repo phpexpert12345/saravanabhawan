@@ -21,15 +21,16 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewAppIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="60dp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_50sdp"
                 android:layout_gravity="center"
                 android:src="@drawable/white_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,9 +38,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/imgLanguage"
+                android:layout_marginEnd="@dimen/_25sdp"
+
+                android:layout_toEndOf="@+id/imageViewAppIcon"
                 android:orientation="vertical"
                 android:layout_gravity="center">
                 <com.google.android.material.textview.MaterialTextView
@@ -52,33 +56,51 @@
                     android:layout_gravity="center"
                     android:visibility="gone"/>
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtBranchName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@string/order_id"
+                        android:layout_gravity="center"
+                        android:maxLines="2"
+                        android:drawableEnd="@drawable/edit"
+                        android:textColor="#FFFFFF"
                         android:textSize="13sp"
                         android:visibility="visible"
-                        android:textColor="#FFFFFF"
-                        android:layout_gravity="center"
-                        android:drawableRight="@drawable/edit"/>
+                        tools:text="@string/order_id" />
                 </LinearLayout>
 
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgLanguage"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginEnd="50dp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
                 android:visibility="invisible"
+                android:layout_alignParentBottom="true"
+                android:tint="@color/colorWhite"
                 android:layout_gravity="center"
+                android:src="@drawable/language"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewAppIcon"
                 app:layout_constraintTop_toTopOf="parent"
                 />
-        </LinearLayout>
+            <include
+                android:id="@+id/cart_layout"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/_45sdp"
+                layout="@layout/action_bar_notifitcation_icon"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
     </FrameLayout>
 

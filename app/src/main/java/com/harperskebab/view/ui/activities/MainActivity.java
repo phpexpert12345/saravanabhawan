@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -177,7 +178,18 @@ public class MainActivity extends BaseActivity {
                             initiateStartupFragment();
                         }
                         else{
-                            startActivity(new Intent(MainActivity.this, MapActivity.class));
+                            if(restaurantViewModel.getRestaurant().getValue()!=null){
+                                if(restaurantViewModel.getRestaurant().getValue().getBranch_Available().equalsIgnoreCase("No")){
+                                    startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                                }
+                                else{
+                                    startActivity(new Intent(MainActivity.this,MapActivity.class));
+                                }
+                            }
+                            else{
+startActivity(new Intent(MainActivity.this,MapActivity.class));
+                            }
+
                             finish();
                         }
                     }

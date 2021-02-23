@@ -57,6 +57,7 @@ public class MenuAdapter extends BaseAdapter {
         final String option = mOptions.get(position);
         Bitmap bitmap = null;
         if (isLogin) {
+
             int[]  myImageListTwo = new int[]{R.drawable.me, R.drawable.my_order, R.drawable.pay_later, R.drawable.my_address, R.drawable.my_review, R.drawable.my_ticket, R.drawable.loyalty, R.drawable.change_password, R.drawable.refer_friend, R.drawable.contactus, R.drawable.rate_us, R.drawable.logout};
              bitmap = BitmapFactory.decodeResource(context.getResources(), myImageListTwo[position]);
         }else {

@@ -24,16 +24,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/offer_list_item_row" />
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/colorBlack"
-            android:id="@+id/txt_no_offer"
-            android:gravity="center"
+            android:orientation="vertical"
             android:visibility="gone"
-            android:text="test"
-            android:textSize="@dimen/_18sdp"/>
+            android:id="@+id/linear_empty"
+            android:layout_marginTop="@dimen/_70sdp"
+            >
+            <ImageView
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_gravity="center"
+                android:id="@+id/img_empty"
+                android:src="@drawable/empty"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center"
+                android:id="@+id/txt_empty"
+                android:visibility="visible"
+                android:text="test"
+                android:textSize="@dimen/_18sdp"/>
+        </LinearLayout>
+
 
     </RelativeLayout>
 

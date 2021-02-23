@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.harperskebab.R;
 import com.harperskebab.databinding.FragmentOfferBinding;
 import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
@@ -66,11 +67,12 @@ public class OfferFragment extends BaseFragment {
             if (restaurantDiscountCoupons != null) {
                 if(restaurantDiscountCoupons.size()>0){
                     if(restaurantDiscountCoupons.get(0).getError().equalsIgnoreCase("1")){
-                        binding.txtNoOffer.setVisibility(View.VISIBLE);
-                        binding.txtNoOffer.setText(restaurantDiscountCoupons.get(0).getErrorMsg());
+                        binding.linearEmpty.setVisibility(View.VISIBLE);
+                        binding.txtEmpty.setText(restaurantDiscountCoupons.get(0).getErrorMsg());
+                        binding.imgEmpty.setImageResource(R.drawable.offer_empty);
                     }
                     else{
-                        binding.txtNoOffer.setVisibility(View.GONE);
+                        binding.linearEmpty.setVisibility(View.GONE);
                         RestaurantOfferAdapter restaurantOfferAdapter = new RestaurantOfferAdapter(getActivity(), restaurantDiscountCoupons);
                         binding.recyclerViewOffer.setAdapter(restaurantOfferAdapter);
 
@@ -78,7 +80,7 @@ public class OfferFragment extends BaseFragment {
                     }
                 }
                 else{
-                    binding.txtNoOffer.setVisibility(View.VISIBLE);
+                    binding.linearEmpty.setVisibility(View.VISIBLE);
                 }
                 //todo
 
