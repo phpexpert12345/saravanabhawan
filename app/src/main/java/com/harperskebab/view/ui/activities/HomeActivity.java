@@ -34,8 +34,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.duonavigationdrawer.views.DuoMenuView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.harperskebab.R;
@@ -89,6 +92,7 @@ public class HomeActivity extends BaseActivity implements DuoMenuView.OnMenuClic
     private FragmentManager fragmentManager = null;
     boolean isCount = false;
     private UserViewModel userViewModel;
+    String device_id="";
     int is_pay_later=0;
 
     @Override
@@ -538,8 +542,8 @@ else{
 
     }
 
-    private void signIn(String emailID, String password, Dialog dialog) {
-        userViewModel.signIn(HomeActivity.this, emailID, password, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "", "", new NetworkOperations(true));
+    private void signIn(String emailID, String password, Dialog dialog ) {
+        userViewModel.signIn(HomeActivity.this, emailID, password, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, device_id, "Android", new NetworkOperations(true));
         userViewModel.getSignInResponse().observe(this, signInResponse -> {
 
             if (signInResponse != null) {
@@ -565,6 +569,7 @@ else{
     }
 
     private void showAuthDialog(int position) {
+        getToken();
         DialogAuthBinding dialogAuthBinding = DialogAuthBinding.inflate(getLayoutInflater());
         BottomSheetDialog dialogAuth = new BottomSheetDialog(HomeActivity.this, R.style.AppTheme_Transparent);
         dialogAuth.setContentView(dialogAuthBinding.getRoot());
@@ -616,6 +621,7 @@ else{
             } else if (password.equals("")) {
                 PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterPassword());
             } else {
+
                 signIn(emailID, password, dialogAuth);
             }
 
@@ -658,7 +664,7 @@ else{
                 }
 
                 userViewModel.signUp(HomeActivity.this, firstName, lastname, emailID, password, phone, "", "", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE,
-                        "", "",branchId, new NetworkOperations(true));
+                        device_id, "Android",branchId, new NetworkOperations(true));
 
                 userViewModel.getSignUpResponse().observe(this, signUpResponse -> {
 
@@ -678,6 +684,28 @@ else{
         });
 
         dialogAuth.show();
+    }
+    public void getToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("reason", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                       device_id = task.getResult();
+                        if(device_id!=null){
+                            Log.i("log",device_id);
+
+                        }
+
+                        // Log and toast
+
+                    }
+                });
     }
 
     public void initiateHomeFragment() {
