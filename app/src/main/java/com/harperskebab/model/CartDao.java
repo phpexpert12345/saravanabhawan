@@ -24,4 +24,6 @@ public interface CartDao {
     public CartItem getOrderItem(String name);
     @Query("select * from cart_item where item_name=:name and top_ids=:top_ids")
     public CartItem getOrderItemids(String name,String top_ids);
+    @Query("select * from cart_item where item_name=:name and item_size_id=:top_ids")
+    public CartItem getOrderSizeids(String name,String top_ids);
 }

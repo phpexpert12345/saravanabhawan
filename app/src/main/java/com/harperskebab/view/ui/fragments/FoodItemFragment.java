@@ -16,6 +16,8 @@ import com.harperskebab.model.CartDao;
 import com.harperskebab.model.CartItem;
 import com.harperskebab.model.Food;
 import com.harperskebab.model.FoodItem;
+import com.harperskebab.model.FoodItemExtraTopping;
+import com.harperskebab.model.ToppingDao;
 import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
 import com.harperskebab.utils.CustomerAppDatabase;
@@ -26,6 +28,7 @@ import com.harperskebab.viewmodel.FoodViewModel;
 import com.harperskebab.viewmodel.ViewModelFactory;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public class FoodItemFragment extends BaseFragment {
@@ -110,7 +113,8 @@ public class FoodItemFragment extends BaseFragment {
                 goBack();
                 initiateFoodItemExtraToppingFragment(selectedFoodItem);
             } else {
-                SetFoodtoDatabase(2);
+                SaveTops();
+//                SetFoodtoDatabase(2);
 //                Food selectedFood = foodViewModel.getCurrentSelectedFood().getValue();
 //                selectedFood.setFoodItem(selectedFoodItem);
 //
@@ -155,7 +159,67 @@ public class FoodItemFragment extends BaseFragment {
     public void fragmentMethod(String s) {
         binding.textViewTotalPrice.setText(s);
     }
+    private void SaveTops(){
+        CustomerAppDatabase customerAppDatabase=CustomerAppDatabase.getDatabase(getContext());
+        CartDao cartDao=customerAppDatabase.cartDao();
+        ToppingDao toppingDao=customerAppDatabase.toppingDao();
+        Food food= foodViewModel.getCurrentSelectedFood().getValue();
+        FoodItemAdapter adapter = (FoodItemAdapter) binding.recyclerViewFoodItem.getAdapter();
+        FoodItem selectedFoodItem = adapter.getselectedFoodItem();
+        String foods= String.valueOf(selectedFoodItem.getId());
+        StringBuilder tops=new StringBuilder();
+        if(foods!=null){
+            if(foods.length()>0){
+                tops.append(foods);
+            }
+            CartItem cartitem = cartDao.getOrderSizeids(
+                    food.getRestaurantPizzaItemName()  ,
+                    tops.toString()
+            );
+            if (cartitem != null) {
+                UpdateCartItem(cartitem);
+            } else {
+                AddCartItem(foods);
+            }
 
+        }
+
+
+    }
+    private void AddCartItem(String foods){
+        CustomerAppDatabase cartDatabase = CustomerAppDatabase.getDatabase(getContext());
+        FoodItemAdapter adapter = (FoodItemAdapter) binding.recyclerViewFoodItem.getAdapter();
+        FoodItem selectedFoodItem = adapter.getselectedFoodItem();
+        CartDao cartDao = cartDatabase.cartDao();
+        Food food= foodViewModel.getCurrentSelectedFood().getValue();
+        CartItem cartItem = new CartItem();
+        cartItem.item_id = food.getItemID();
+        cartItem.item_name = food.getRestaurantPizzaItemName();
+        cartItem.item_size_type = selectedFoodItem.getRestaurantPizzaItemName();
+        cartItem.item_price = selectedFoodItem.getRestaurantPizzaItemPrice();
+        cartItem.total_price = selectedFoodItem.getRestaurantPizzaItemPrice();
+        cartItem.deal_id=food.getItemID();
+        cartItem.quantity = 1;
+        cartItem.com = false;
+        cartItem.top_ids ="";
+        cartItem.top_name="";
+        cartItem.top_price=selectedFoodItem.getRestaurantPizzaItemPrice();
+        cartItem.item_size_id = String.valueOf(selectedFoodItem.getId());
+        cartItem.icon=food.getFoodIcon();
+        cartItem.food_tax_applicable=food.getFoodTaxApplicable();
+        cartItem.desc = food.getResPizzaDescription();
+        cartDao.Insert(cartItem);
+    }
+    private void UpdateCartItem(CartItem cartItem){
+        Integer quantity = cartItem.quantity;
+        quantity += quantity;
+        cartItem.quantity = quantity;
+        CustomerAppDatabase cartDatabase = CustomerAppDatabase.getDatabase(getContext());
+        CartDao cartDao = cartDatabase.cartDao();
+        cartDao.Update(cartItem);
+
+
+    }
     private void SetFoodtoDatabase(Integer type){
         CustomerAppDatabase customerAppDatabase=CustomerAppDatabase.getDatabase(getContext());
         CartDao cartDao=customerAppDatabase.cartDao();
@@ -181,23 +245,7 @@ public class FoodItemFragment extends BaseFragment {
                 }
 
             } else {
-                CartItem cartItem = new CartItem();
-                cartItem.item_id = food.getItemID();
-                cartItem.item_name = food.getRestaurantPizzaItemName();
-                cartItem.item_size_type = food.getRestaurantPizzaItemSizeName();
-                cartItem.item_price = food.getRestaurantPizzaItemPrice();
-                cartItem.total_price = food.getRestaurantPizzaItemPrice();
-                cartItem.deal_id=food.getItemID();
-                cartItem.quantity = 1;
-                cartItem.com = false;
-                cartItem.top_ids = "";
-                cartItem.top_name="";
-                cartItem.top_price="";
-                cartItem.item_size_id = "0";
-                cartItem.icon=food.getFoodIcon();
-                cartItem.food_tax_applicable=food.getFoodTaxApplicable();
-                cartItem.desc = food.getResPizzaDescription();
-                cartDao.Insert(cartItem);
+
             }
 
         }

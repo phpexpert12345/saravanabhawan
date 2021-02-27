@@ -354,6 +354,7 @@ else{
         CartDao cartDao = cartDatabase.cartDao();
         cartDao.Update(cartItem);
 
+
     }
     private void AddCartItem(List<FoodItemExtraTopping>foods){
         double total_price=0.0;

@@ -68,6 +68,13 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemViewHolder> 
                     foodExtraToppings.add(foodItemExtraTopping);
                 }
             }
+            if(!orderFoodItem.getItemSize().equalsIgnoreCase("")){
+                holder.getBinding().txtSize.setVisibility(View.VISIBLE);
+                holder.getBinding().txtSize.setText(orderFoodItem.getItemSize());
+            }
+            else{
+                holder.getBinding().txtSize.setVisibility(View.GONE);
+            }
             holder.getBinding().textViewFood.setText(orderFoodItem.getItemsName());
             holder.getBinding().textViewFoodCount.setText(orderFoodItem.getQuantity().toString());
             holder.getBinding().textViewFoodPrice.setText(String.format(Utility.getCurrencySymbol(orderFoodItem.getCurrency())+""+orderFoodItem.getMenuprice()));

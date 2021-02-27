@@ -78,18 +78,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             holder.getBinding().textViewPlus.setOnClickListener(v ->  cartClicked.Clicked(position, cartItem,1));
             holder.getBinding().textViewMinus.setOnClickListener(v ->  cartClicked.Clicked(position, cartItem,0));
-            String extras=getTopfromData(cartItem);
-            if(!extras.equalsIgnoreCase("")) {
-                if(!extras.equalsIgnoreCase("+")) {
-                    holder.getBinding().textViewTop.setVisibility(View.VISIBLE);
-                    holder.getBinding().textViewTop.setText(extras);
-                }
-                else{
-                    holder.getBinding().textViewTop.setVisibility(View.GONE);
+            if(!cartItem.top_name.equalsIgnoreCase("")){
+                String extras = getTopfromData(cartItem);
+                if (!extras.equalsIgnoreCase("")) {
+                    if (!extras.equalsIgnoreCase("+")) {
+                        holder.getBinding().textViewTop.setVisibility(View.VISIBLE);
+                        holder.getBinding().textViewTop.setText(extras);
+                    } else {
+                        holder.getBinding().textViewTop.setVisibility(View.GONE);
+                    }
                 }
             }
-            else{
-                holder.getBinding().textViewTop.setVisibility(View.GONE);
+            else {
+
+                    if (!cartItem.item_size_type.equalsIgnoreCase("")) {
+                        holder.getBinding().textViewTop.setVisibility(View.VISIBLE);
+                        holder.getBinding().textViewTop.setText(cartItem.item_size_type);
+                    } else {
+                        holder.getBinding().textViewTop.setVisibility(View.GONE);
+                    }
+
+
             }
 
 
