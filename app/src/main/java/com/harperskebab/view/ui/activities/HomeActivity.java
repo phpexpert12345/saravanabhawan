@@ -220,8 +220,8 @@ else{
 //        splashViewModel.getSplash(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "1", new NetworkOperations(false));
         restaurantViewModel.getRestrurentInformation(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
         languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
-        frontBannerViewModel.getFrontBanner(HomeActivity.this, "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, Constant.API.SLIDER, new NetworkOperations(false));
-        foodCategoryViewModel.getFoodCategory(HomeActivity.this, "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(false));
+        frontBannerViewModel.getFrontBanner(HomeActivity.this, branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, Constant.API.SLIDER, new NetworkOperations(false));
+        foodCategoryViewModel.getFoodCategory(HomeActivity.this, branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(false));
         setupBadge();
     }
 

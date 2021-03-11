@@ -105,9 +105,9 @@ public class FoodFragment extends BaseFragment {
         eatInViewModel = ViewModelFactory.getInstance(getActivity()).create(EatInViewModel.class);
         branchId = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("BranchId", "");
         if (foodCombo.equalsIgnoreCase("Yes")) {
-            foodViewModel.getComboFood(getActivity(), "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryID().toString(), new NetworkOperations(true));
+            foodViewModel.getComboFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryID().toString(), new NetworkOperations(true));
         } else {
-            foodViewModel.getFood(getActivity(), "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(),new NetworkOperations(false));
+            foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(),new NetworkOperations(false));
         }
 //        foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(), new NetworkOperations(true));
 
@@ -150,7 +150,7 @@ public class FoodFragment extends BaseFragment {
                         } else {
                             binding.recFoodCombo.setVisibility(View.GONE);
                             showProgress();
-                            foodViewModel.getFood(getActivity(), "2", Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), new NetworkOperations(false));
+                            foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), new NetworkOperations(false));
                         }
 //                        foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategory.getId(), new NetworkOperations(true));
                     });
