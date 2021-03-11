@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54567448527:android:f640b083df25ea69ff6cba",
+        "android_client_info": {
+          "package_name": "com.sarvanaorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54567448527-sl8kj9rl8qodlut3kbeuo2p4dabnld6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFzlZWnxyGvX7vHYQEMxitM0ycRF4ekkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54567448527-sl8kj9rl8qodlut3kbeuo2p4dabnld6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
