@@ -61,6 +61,7 @@ public class LoyaltyFragment extends BaseFragment {
         loyaltyPointListViewModel.getLoyaltyPointListResponse().observe(this, loyaltyPointListResponse -> {
 
             if (loyaltyPointListResponse != null) {
+                binding.loyaltyConstraint.setVisibility(View.VISIBLE);
                 binding.textViewSignUpLoyaltyPoint.setText(String.format("%d %s", loyaltyPointListResponse.getSignPoints(), languageViewModel.getLanguageResponse().getValue().getPoints()));
                 binding.textViewPlaceFirstOrderLoyaltyPoint.setText(String.format("%d %s", loyaltyPointListResponse.getPlaceFirstOrdersPoints(), languageViewModel.getLanguageResponse().getValue().getPoints()));
                 binding.textViewPostingReviewLoyaltyPoint.setText(String.format("%d %s", loyaltyPointListResponse.getPostReviewPoints(), languageViewModel.getLanguageResponse().getValue().getPoints()));

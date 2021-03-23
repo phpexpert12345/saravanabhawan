@@ -48,7 +48,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         CartItem cartItem=cartItems.get(position);
         try {
             holder.getBinding().textViewFood.setText(cartItem.item_name);
-            holder.getBinding().textViewFoodDescription.setText(cartItem.desc);
+            if(cartItem.desc.length()>0) {
+                holder.getBinding().textViewFoodDescription.setVisibility(View.VISIBLE);
+                holder.getBinding().textViewFoodDescription.setText(cartItem.desc);
+            }
+            else{
+                holder.getBinding().textViewFoodDescription.setVisibility(View.GONE);
+            }
             holder.getBinding().textViewFoodCount.setText("" + cartItem.quantity);
             holder.getBinding().textViewTotalFoodPackage.setVisibility(View.GONE);
             holder.getBinding().lLinearLayoutCountDetails.setVisibility(View.VISIBLE);

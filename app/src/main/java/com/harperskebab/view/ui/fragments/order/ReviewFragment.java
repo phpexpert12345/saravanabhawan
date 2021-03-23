@@ -59,7 +59,7 @@ public class ReviewFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         getActivity().setTitle(languageViewModel.getLanguageResponse().getValue().getReview());
         binding = FragmentReviewBinding.inflate(inflater, container, false);
-
+        binding.emptyView.linearEmpty.setVisibility(View.GONE);
         binding.recyclerViewReviews.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         reviewViewModel.getReviewsResponse().observe(this, restaurantReviews -> {
@@ -92,9 +92,9 @@ public class ReviewFragment extends BaseFragment {
                 }
             }
             else{
-                binding.linearLayoutContent.setVisibility(View.GONE);
-                binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
-                binding.emptyView.imgEmpty.setImageResource(R.drawable.ic_review_empty);
+//                binding.linearLayoutContent.setVisibility(View.GONE);
+//                binding.emptyView.linearEmpty.setVisibility(View.VISIBLE);
+//                binding.emptyView.imgEmpty.setImageResource(R.drawable.ic_review_empty);
             }
 
         });

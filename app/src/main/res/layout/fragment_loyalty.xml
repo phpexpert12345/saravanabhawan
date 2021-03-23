@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
+    android:id="@+id/loyalty_constraint"
+    android:visibility="gone"
     tools:context=".view.ui.fragments.LoyaltyFragment">
 
     <androidx.core.widget.NestedScrollView

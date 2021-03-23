@@ -1351,7 +1351,7 @@ getCartItems();
                         } else {
 
 
-                            showMessage("Alert", verifyLoyaltyPointResponse.getErrorMsg(), "OK", null, dialogInterface -> {
+                            showMessage("Alert", verifyLoyaltyPointResponse.getSuccessMsg(), "OK", null, dialogInterface -> {
                                 dialogInterface.dismiss();
                             }, null);
 

@@ -28,7 +28,7 @@ public class LanguageViewModel extends BaseViewModel {
     @SuppressLint("CheckResult")
     public void getLanguage(Context context, String apiKey, String languageCode, NetworkOperations nwCall) {
 
-        nwCall.onStart(context, "");
+//        nwCall.onStart(context, "");
 
         this.languageResponse.setValue(null);
 
@@ -40,12 +40,12 @@ public class LanguageViewModel extends BaseViewModel {
 
     private void onSuccessLanguage(RmLanguageResponse languageResponse, NetworkOperations nwCall) {
         this.languageResponse.setValue(languageResponse);
-        nwCall.onComplete();
+//        nwCall.onComplete();
     }
 
     private void onError(Throwable throwable, NetworkOperations nwCall) {
         //todo
-        nwCall.onComplete();
+//        nwCall.onComplete();
     }
 
     public MutableLiveData<RmLanguageResponse> getLanguageResponse() {

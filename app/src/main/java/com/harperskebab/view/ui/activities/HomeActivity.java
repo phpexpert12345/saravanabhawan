@@ -1,8 +1,10 @@
 package com.harperskebab.view.ui.activities;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -222,6 +225,16 @@ else{
         languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
         frontBannerViewModel.getFrontBanner(HomeActivity.this, branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, Constant.API.SLIDER, new NetworkOperations(false));
         foodCategoryViewModel.getFoodCategory(HomeActivity.this, branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(false));
+
+        languageViewModel.getLanguageResponse().observe(HomeActivity.this, languageResponse -> {
+
+            if (languageResponse != null) {
+//                Constant.API.LANGUAGE_CODE = language.getLangCode();
+//                languageViewModel.getLanguageResponse().removeObservers(this);
+                setupView();
+            }
+
+        });
         setupBadge();
     }
 
@@ -297,23 +310,13 @@ else{
        String branchAddress  = PreferenceManager.getDefaultSharedPreferences(this).getString("BRANCH_ADDRESS", "");
         binding.header.txtBranchName.setText(branchName+" "+branchAddress);
 
-        callAPI();
+//        callAPI();
         SharedPreferences preferencess = PreferenceManager.getDefaultSharedPreferences(this);
         String strLangImage = preferencess.getString("LANG_IMAGE", "");
 //        Glide.with(HomeActivity.this)
 //                .load(strLangImage)
 //                .into(binding.header.imgLanguage);
-        languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
 
-        languageViewModel.getLanguageResponse().observe(HomeActivity.this, languageResponse -> {
-
-            if (languageResponse != null) {
-//                Constant.API.LANGUAGE_CODE = language.getLangCode();
-//                languageViewModel.getLanguageResponse().removeObservers(this);
-                setupView();
-            }
-
-        });
 
 
     }
@@ -410,10 +413,12 @@ else{
                         new Intent(HomeActivity.this, ContactUsActivity.class)
                 );
             } else if (position == 10) {
-//                startActivity(
-//                        new Intent(HomeActivity.this, ContactUsActivity.class)
-//                );
-//            } else if (position == 11) {
+                try{ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
+                }
+                catch (ActivityNotFoundException e){
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                }
+//                Toast.makeText(this, "Rate App", Toast.LENGTH_SHORT).show();
 
             } else if (position == 11) {
                 showMessage("Alert", "Are you sure want to logout ?", "YES", "NO", dialogInterface -> {
@@ -455,7 +460,7 @@ else{
             if (signInResponse != null && signInResponse.getSuccess() == 0) {
                 isLogin = true;
                 if (signInResponse.getUserPhoto().equals("")) {
-                    imageViewUser.setImageResource(R.drawable.profile_pic);
+                    imageViewUser.setImageResource(R.drawable.user);
                 } else {
                     Glide.with(HomeActivity.this)
                             .load(signInResponse.getUserPhoto())
