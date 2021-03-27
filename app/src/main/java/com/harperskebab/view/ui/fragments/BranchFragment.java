@@ -1,5 +1,6 @@
 package com.harperskebab.view.ui.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -160,6 +161,7 @@ String address;
             PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("BranchId", bramchId).apply();
 
             if (isFromHome){
+                getActivity().setResult(Activity.RESULT_OK);
                 getActivity().finish();
             }else {
                 startActivity(new Intent(getActivity(), HomeActivity.class).putExtra("BRANCH_ID", bramchId).putExtra("BRANCH_NAME", bramchId));

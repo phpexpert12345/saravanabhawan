@@ -63,36 +63,38 @@
             app:progressMode="true"
             app:selectedDotColor="@color/colorRed" />
 
-        <LinearLayout
-            android:id="@+id/laySkip"
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/laySkip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/green_round_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtSkip"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/green_round_bg"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:visibility="visible">
+            android:paddingLeft="30dp"
+            android:paddingTop="5dp"
+            android:paddingRight="30dp"
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txtSkip"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:gravity="center"
-                android:paddingLeft="30dp"
-                android:paddingTop="5dp"
-                android:paddingRight="30dp"
-                android:paddingBottom="5dp"
-                android:text="Skip >>"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+            android:text="Skip >>"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </RelativeLayout>

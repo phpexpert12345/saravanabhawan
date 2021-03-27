@@ -22,6 +22,7 @@ import com.harperskebab.view.adapter.FoodCategoryAdapter;
 import com.harperskebab.view.adapter.TableAdapter;
 import com.harperskebab.view.adapter.ViewPagerSlideAdapter;
 import com.harperskebab.view.ui.activities.AddressFromPostCodeActivity;
+import com.harperskebab.view.ui.activities.HomeActivity;
 import com.harperskebab.view.ui.activities.MenuActivity;
 import com.harperskebab.view.ui.activities.NewBranchActivity;
 import com.harperskebab.viewmodel.FoodCategoryViewModel;
@@ -71,6 +72,7 @@ public class HomeFragment extends BaseFragment {
         }
         frontBannerViewModel = ViewModelFactory.getInstance(getActivity()).create(FrontBannerViewModel.class);
         foodCategoryViewModel = ViewModelFactory.getInstance(getActivity()).create(FoodCategoryViewModel.class);
+
     }
 
     @Override
@@ -93,6 +95,11 @@ public class HomeFragment extends BaseFragment {
             if (frontBanners != null) {
                 setViewPager(frontBanners);
             }
+        });
+        binding.changeBranch.setOnClickListener(v->{
+            Intent intent=new Intent(getActivity(), NewBranchActivity.class);
+            intent.putExtra("isFromHome",true);
+          getActivity() .startActivityForResult(intent,34);
         });
 
         binding.edtCatSearch.addTextChangedListener(new TextWatcher() {
@@ -168,17 +175,36 @@ public class HomeFragment extends BaseFragment {
         });
         foodCategoryViewModel.getFoodCategories().observe(this, foodCategories -> {
             if (foodCategories != null) {
-                arrFoodCategories=foodCategories;
-                PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("RestaurentId", foodCategories.get(0).getRestaurantId()).apply();
-                FoodCategoryAdapter foodCategoryAdapter = new FoodCategoryAdapter(getContext(), arrFoodCategories, (position, foodCategory) -> {
-                    Intent intent = new Intent(getActivity(), MenuActivity.class);
-                    intent.putExtra(Constant.Data.FOOD_CATEGORY_POSITION, position);
-                    intent.putExtra("FOOD_CATEGORY_COMBO", foodCategory.getCombo_Available());
-                    startActivity(intent);
+                if(foodCategories.size()>0){
+                    if(foodCategories.get(0).getError()==1){
+                        binding.txtNoCategories.setVisibility(View.VISIBLE);
+                        binding.changeBranch.setVisibility(View.VISIBLE);
+                        binding.txtNoCategories.setText(foodCategories.get(0).getError_msg());
+                        binding.recyclerViewFoodCategory.setVisibility(View.GONE);
+                    }
+                    else{
+                        binding.recyclerViewFoodCategory.setVisibility(View.VISIBLE);
+                        binding.txtNoCategories.setVisibility(View.GONE);
+                        binding.changeBranch.setVisibility(View.GONE);
+                        arrFoodCategories=foodCategories;
+                        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("RestaurentId", foodCategories.get(0).getRestaurantId()).apply();
+                        FoodCategoryAdapter foodCategoryAdapter = new FoodCategoryAdapter(getContext(), arrFoodCategories, (position, foodCategory) -> {
+                            Intent intent = new Intent(getActivity(), MenuActivity.class);
+                            intent.putExtra(Constant.Data.FOOD_CATEGORY_POSITION, position);
+                            intent.putExtra("FOOD_CATEGORY_COMBO", foodCategory.getCombo_Available());
+                            startActivity(intent);
 
-                });
+                        });
 
-                binding.recyclerViewFoodCategory.setAdapter(foodCategoryAdapter);
+                        binding.recyclerViewFoodCategory.setAdapter(foodCategoryAdapter);
+                    }
+                }
+
+            }
+            else{
+                binding.txtNoCategories.setVisibility(View.VISIBLE);
+                binding.recyclerViewFoodCategory.setVisibility(View.GONE);
+                binding.changeBranch.setVisibility(View.VISIBLE);
             }
         });
 

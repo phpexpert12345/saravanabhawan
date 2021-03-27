@@ -1,5 +1,6 @@
 package com.harperskebab.view.ui.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -112,7 +114,7 @@ public class HomeActivity extends BaseActivity implements DuoMenuView.OnMenuClic
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreenDark));
-        branchId = getIntent().getStringExtra("BRANCH_ID");
+//        branchId = getIntent().getStringExtra("BRANCH_ID");
         userViewModel = ViewModelFactory.getInstance(getApplicationContext()).create(UserViewModel.class);
         callAPI();
         binding.edtCatSearch.addTextChangedListener(new TextWatcher() {
@@ -162,7 +164,7 @@ else{
             public void onClick(View v) {
                 Intent intent=new Intent(HomeActivity.this, NewBranchActivity.class);
                 intent.putExtra("isFromHome",true);
-                startActivity(intent);
+                startActivityForResult(intent,34);
             }
         });
 //        if(restaurantViewModel.getRestaurant().getValue()!=null){
@@ -217,9 +219,9 @@ else{
 
     private void callAPI() {
         languageViewModel = ViewModelFactory.getInstance(getApplicationContext()).create(LanguageViewModel.class);
-        if (branchId == null) {
+
             branchId = PreferenceManager.getDefaultSharedPreferences(this).getString("BranchId", "");
-        }
+
 //        splashViewModel.getSplash(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "1", new NetworkOperations(false));
         restaurantViewModel.getRestrurentInformation(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
         languageViewModel.getLanguage(HomeActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
@@ -779,4 +781,13 @@ if(response!=null){
         transaction.commit();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode== Activity.RESULT_OK){
+            if(requestCode==34){
+                callAPI();
+            }
+        }
+    }
 }

@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -164,6 +165,7 @@ public class MainActivity extends BaseActivity {
         NetworkOperations opt= new NetworkOperations(true);
         opt.onStart(this,"");
         String Url=Constant.Url.BASE_URL + Constant.Url.SPLASH+"?api_key="+Constant.API.FOOD_KEY+"&lang_code="+Constant.API.LANGUAGE_CODE+"&splash_type=1";
+        Log.i("url",Url);
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
