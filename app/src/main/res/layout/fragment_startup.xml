@@ -72,7 +72,7 @@
         android:layout_gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/green_round_bg"
+        android:background="@color/colorGreen"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"

@@ -178,6 +178,7 @@ public class HomeFragment extends BaseFragment {
                 if(foodCategories.size()>0){
                     if(foodCategories.get(0).getError()==1){
                         binding.txtNoCategories.setVisibility(View.VISIBLE);
+                        binding.imgNoCategories.setVisibility(View.VISIBLE);
                         binding.changeBranch.setVisibility(View.VISIBLE);
                         binding.txtNoCategories.setText(foodCategories.get(0).getError_msg());
                         binding.recyclerViewFoodCategory.setVisibility(View.GONE);
@@ -186,6 +187,7 @@ public class HomeFragment extends BaseFragment {
                         binding.recyclerViewFoodCategory.setVisibility(View.VISIBLE);
                         binding.txtNoCategories.setVisibility(View.GONE);
                         binding.changeBranch.setVisibility(View.GONE);
+                        binding.imgNoCategories.setVisibility(View.GONE);
                         arrFoodCategories=foodCategories;
                         PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("RestaurentId", foodCategories.get(0).getRestaurantId()).apply();
                         FoodCategoryAdapter foodCategoryAdapter = new FoodCategoryAdapter(getContext(), arrFoodCategories, (position, foodCategory) -> {
@@ -205,6 +207,7 @@ public class HomeFragment extends BaseFragment {
                 binding.txtNoCategories.setVisibility(View.VISIBLE);
                 binding.recyclerViewFoodCategory.setVisibility(View.GONE);
                 binding.changeBranch.setVisibility(View.VISIBLE);
+                binding.imgNoCategories.setVisibility(View.VISIBLE);
             }
         });
 
