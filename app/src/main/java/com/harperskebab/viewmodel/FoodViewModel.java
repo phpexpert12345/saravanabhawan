@@ -3,6 +3,7 @@ package com.harperskebab.viewmodel;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -89,6 +90,9 @@ public class FoodViewModel extends BaseViewModel {
     public void getFood(Context context,String branchId, String apiKey, String langCode, String foodCategory,String restId, NetworkOperations nwCall) {
 
         nwCall.onStart(context, "");
+        String url=Constant.Url.BASE_URL+Constant.Url.FOOD+"?branch_id="+branchId+"&api_key="+apiKey+"&lang_code="+langCode+"&Category_ID="+foodCategory+"&resid="+restId;
+        Log.i("url",url);
+
 
         rfInterface.getFood(branchId,apiKey, langCode, foodCategory,restId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -116,7 +120,7 @@ public class FoodViewModel extends BaseViewModel {
     }
 
     private void onErrorFood(Throwable throwable, NetworkOperations nwCall) {
-        //todo
+        this.foods.setValue(null);
         nwCall.onComplete();
     }
 

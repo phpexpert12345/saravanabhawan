@@ -134,29 +134,40 @@ public class FoodFragment extends BaseFragment {
         super.onStart();
 
         foodCategoryViewModel.getFoodCategories().observe(this, foodCategories -> {
+            if(foodCategories.size()>0){
+                if(foodCategories.get(0).getError()==1){
+                    binding.recyclerViewFoodCategory.setVisibility(View.GONE);
 
-            FoodCategoryHorizontalAdapter foodCategoryHorizontalAdapter = new FoodCategoryHorizontalAdapter(
-                    getActivity(), foodCategories, foodCategoryPosition,
-                    (position, foodCategory) -> {
-                        foodCategoryPosition = position;
-                        Glide.with(getActivity())
-                                .load(foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryImg())
-                                .placeholder(R.drawable.loading)
-                                .centerCrop()
-                                .into(binding.imageViewFFoodCat);
-                        if (foodCategory.getCombo_Available().equalsIgnoreCase("Yes")) {
-                            binding.recFoodCombo.setVisibility(View.VISIBLE);
-                            foodViewModel.getComboFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryID().toString(), new NetworkOperations(true));
-                        } else {
-                            binding.recFoodCombo.setVisibility(View.GONE);
-                            showProgress();
-                            foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), new NetworkOperations(false));
-                        }
+                }
+                else{
+
+                    binding.recyclerViewFoodCategory.setVisibility(View.VISIBLE);
+                    FoodCategoryHorizontalAdapter foodCategoryHorizontalAdapter = new FoodCategoryHorizontalAdapter(
+                            getActivity(), foodCategories, foodCategoryPosition,
+                            (position, foodCategory) -> {
+                                foodCategoryPosition = position;
+                                Glide.with(getActivity())
+                                        .load(foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryImg())
+                                        .placeholder(R.drawable.loading)
+                                        .centerCrop()
+                                        .into(binding.imageViewFFoodCat);
+                                if (foodCategory.getCombo_Available().equalsIgnoreCase("Yes")) {
+                                    binding.recFoodCombo.setVisibility(View.VISIBLE);
+                                    foodViewModel.getComboFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getCategoryID().toString(), new NetworkOperations(true));
+                                } else {
+                                    binding.recFoodCombo.setVisibility(View.GONE);
+                                    showProgress();
+                                    foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getId(),foodCategoryViewModel.getFoodCategories().getValue().get(foodCategoryPosition).getRestaurantId(), new NetworkOperations(false));
+                                }
 //                        foodViewModel.getFood(getActivity(), branchId, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, "" + foodCategory.getId(), new NetworkOperations(true));
-                    });
+                            });
 
-            binding.recyclerViewFoodCategory.setAdapter(foodCategoryHorizontalAdapter);
-            binding.recyclerViewFoodCategory.getLayoutManager().scrollToPosition(foodCategoryPosition);
+                    binding.recyclerViewFoodCategory.setAdapter(foodCategoryHorizontalAdapter);
+                    binding.recyclerViewFoodCategory.getLayoutManager().scrollToPosition(foodCategoryPosition);
+                }
+            }
+
+
         });
         binding.recFoodCombo.addItemDecoration(new DividerItemDecoration(getActivity(), 0));
 //        DividerItemDecoration dividerItemDecorationCombo = new DividerItemDecoration(binding.recyclerViewFood.getContext(), LinearLayoutManager.VERTICAL);
@@ -177,13 +188,21 @@ public class FoodFragment extends BaseFragment {
 
        showProgress();
         foodViewModel.getFoods().observe(this, foods -> {
+            hideProgress();
             if (foods != null) {
-               hideProgress();
+
 
                 foodAdapter = new FoodAdapter(getContext(), foods, onPlusClick, onMinusClick, Utility.getCurrencySymbol(restaurantViewModel.getRestaurant().getValue().getWebsiteCurrencySymbole()));
 
                 binding.recyclerViewFood.setAdapter(foodAdapter);
+                binding.imgNoMenu.setVisibility(View.GONE);
+                binding.txtNoMenu.setVisibility(View.GONE);
                 binding.recyclerViewFood.setVisibility(View.VISIBLE);
+            }
+            else{
+                binding.imgNoMenu.setVisibility(View.VISIBLE);
+                binding.txtNoMenu.setVisibility(View.VISIBLE);
+                binding.recyclerViewFood.setVisibility(View.GONE);
             }
         });
 getCartItems();
