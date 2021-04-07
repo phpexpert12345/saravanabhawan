@@ -220,6 +220,9 @@ binding.textViewChooseTable.setText(languageViewModel.getLanguageResponse().getV
                     noPerson--;
                     dialogNoOfPersonBinding.edtNoOfPerson.setText(String.valueOf(noPerson));
                 }
+                else{
+                    dialogNoOfPerson.dismiss();
+                }
             }
         });
         dialogNoOfPersonBinding.buttonSubmit.setOnClickListener(v -> {

@@ -1285,6 +1285,9 @@ getCartItems();
         DialogCouponBinding dialogCouponBinding = DialogCouponBinding.inflate(getLayoutInflater());
         BottomSheetDialog dialogCoupon = new BottomSheetDialog(getActivity(), R.style.AppTheme_Transparent);
         dialogCoupon.setContentView(dialogCouponBinding.getRoot());
+        dialogCouponBinding.imgCancel.setOnClickListener(v->{
+            dialogCoupon.dismiss();
+        });
 
         dialogCouponBinding.buttonSubmit.setOnClickListener(v -> {
             String couponCode = dialogCouponBinding.editTextCouponCode.getText().toString();

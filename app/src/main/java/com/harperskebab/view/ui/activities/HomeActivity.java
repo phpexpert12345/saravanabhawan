@@ -646,12 +646,10 @@ else{
 
             if (fullName.equals("")) {
                 PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterFullName());
-            } else if (!fullName.contains(" ")) {
-                PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterFullName());
-            } else if (emailID.equals("")) {
+            }  else if (emailID.equals("")) {
                 PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterEmailAddress());
             } else if (Validation.isValidEmail(emailID)) {
-                PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterEmailAddress());
+                PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPLEASEENTERVALIDEMAIL());
             } else if (phone.equals("")) {
                 PopMessage.makeLongToast(HomeActivity.this, languageViewModel.getLanguageResponse().getValue().getPleaseEnterPhoneNo());
             } else if (!phone.matches(regex)) {

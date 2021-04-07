@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -21,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.Html;
 import android.text.Spanned;
@@ -46,11 +49,19 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
@@ -114,6 +125,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
     private final static int FINE_LOCATION = 100;
     private final static int PLACE_PICKER_REQUEST = 2;
     private static final String TAG = MapActivity.class.getSimpleName();
+    GoogleApiClient googleApiClient;
+    final static int REQUEST_LOCATION = 199;
     private CartViewModel cartViewModel;
 //    public  void onClick(String val) {
 //        layPostCode.setVisibility(View.GONE);
@@ -127,6 +140,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        int location_mode=getLocationMode(MapActivity.this);
         if (Build.VERSION.SDK_INT >= 16) {
             getWindow().setFlags(AccessibilityNodeInfoCompat.ACTION_NEXT_HTML_ELEMENT, AccessibilityNodeInfoCompat.ACTION_NEXT_HTML_ELEMENT);
             getWindow().getDecorView().setSystemUiVisibility(3328);
@@ -136,6 +150,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
         }
         cartViewModel = ViewModelFactory.getInstance(this).create(CartViewModel.class);
         restaurantViewModel.getRestrurentInformation(MapActivity.this, Constant.API.FOOD_KEY, Constant.API.LANGUAGE_CODE, new NetworkOperations(true));
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fm_mappp);
+        assert supportMapFragment != null;
+        supportMapFragment.getMapAsync(MapActivity.this);
         IdS();
 
 //        txtDelivery.setText(languageViewModel.getLanguageResponse().getValue().getDelivery());
@@ -495,9 +512,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
                 if (location != null) {
                     currentLocation = location;
 //                    Toast.makeText(getApplicationContext(), currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
-                    SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fm_mappp);
-                    assert supportMapFragment != null;
-                    supportMapFragment.getMapAsync(MapActivity.this);
+
+                    if(currentLocation!=null){
+                        strLat=currentLocation.getLatitude();
+                        strLong=currentLocation.getLongitude();
+                        onMapSet(strLat, strLong);
+                    }
                 }
             }
         });
@@ -506,10 +526,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        currentLat = currentLocation.getLatitude();
-        currentLong = currentLocation.getLongitude();
+        if(currentLocation!=null) {
+            currentLat = currentLocation.getLatitude();
+            currentLong = currentLocation.getLongitude();
 //        mMap.setMapType(googleMap.MAP_TYPE_SATELLITE);
-        onMapSet(currentLocation.getLatitude(), currentLocation.getLongitude());
+            onMapSet(currentLocation.getLatitude(), currentLocation.getLongitude());
+        }
 //        if (strLat==null&&strLong==null) {
 //             latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 //        }else {
@@ -558,18 +580,23 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.map);
         LatLng latLng = new LatLng(latitude, longitude);
 //        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(str);
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+        if(mMap!=null) {
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
 //        mMap.addMarker(markerOptions);
-        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
-                .title(strAddress)
-                .draggable(true)
-                .icon(icon));
-        marker.showInfoWindow();
+            Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
+                    .title(strAddress)
+                    .draggable(true)
+                    .icon(icon));
+            marker.showInfoWindow();
+        }
 //        mMap.setMapType(mMap.);
     }
 
     public void IdS() {
+        if(getLocationMode(this)==0){
+enableLoc();
+        }
         imageViewAppIconMap = findViewById(R.id.imageViewAppIconMap);
         txtViewMenuName = findViewById(R.id.txtViewMenuName);
         layOrderType = findViewById(R.id.layOrderType);
@@ -583,7 +610,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
         recPostcode.setLayoutManager(new LinearLayoutManager(this));
         layViewMenuForDelivery = findViewById(R.id.layViewMenuForDelivery);
         edtPostCodeClick = findViewById(R.id.edtPostCodeClick);
-        viewOne = findViewById(R.id.viewTwo);
+        viewOne = findViewById(R.id.viewOne);
         viewTwo = findViewById(R.id.viewTwo);
         txtSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -641,9 +668,15 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
 //            }
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
-                Log.i(TAG, "Place: " + place.getName());
+                if(place!=null) {
+                    Log.i(TAG, "Place: " + place.getName());
 
-                LatLng latLng = place.getLatLng();
+                    LatLng latLng = place.getLatLng();
+                }
+                else{
+                    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+                    fetchLocation();
+                }
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
@@ -684,5 +717,79 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
                                               CharSequence address, CharSequence phoneNumber, Uri websiteUri) {
         return Html.fromHtml(res.getString(R.string.place_details, name, id, address, phoneNumber,
                 websiteUri));
+    }
+    public int getLocationMode(Context context)
+    {
+        try {
+            return Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
+
+    }
+    private void enableLoc(){
+        int location_mode=getLocationMode(MapActivity.this);
+
+        if (googleApiClient == null) {
+            googleApiClient = new GoogleApiClient.Builder(MapActivity.this)
+                    .addApi(LocationServices.API)
+                    .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                        @Override
+                        public void onConnected(Bundle bundle) {
+
+                        }
+
+                        @Override
+                        public void onConnectionSuspended(int i) {
+                            googleApiClient.connect();
+                        }
+                    })
+                    .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(ConnectionResult connectionResult) {
+
+                            Log.d("Location error", "Location error " + connectionResult.getErrorCode());
+                        }
+                    }).build();
+        }
+        googleApiClient.connect();
+
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        locationRequest.setInterval(30 * 1000);
+        locationRequest.setFastestInterval(5 * 1000);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        builder.setAlwaysShow(true);
+
+        PendingResult<LocationSettingsResult> result =
+                LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(LocationSettingsResult result) {
+                final Status status = result.getStatus();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        try {
+                            // Show the dialog by calling startResolutionForResult(),
+                            // and check the result in onActivityResult().
+                            status.startResolutionForResult(MapActivity.this, REQUEST_LOCATION);
+
+//                                finish();
+                        } catch (IntentSender.SendIntentException e) {
+                            // Ignore the error.
+                        }
+                        break;
+                    case  LocationSettingsStatusCodes.SUCCESS :
+                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
+                        fetchLocation();
+                        break;
+
+                }
+            }
+        });
+
     }
 }

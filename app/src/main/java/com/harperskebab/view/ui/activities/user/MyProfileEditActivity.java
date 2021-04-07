@@ -185,14 +185,16 @@ public class MyProfileEditActivity extends BaseActivity {
 
             if (signInResponse != null) {
                 if (signInResponse.getSuccess().equals(0L)) {
-                    showMessage("Alert", signInResponse.getSuccessMsg(), "OK", "Close", dialogInterface -> {
-                        userViewModel.setSignInResponse(signInResponse);
-                        profileViewModel.getSignInResponse().removeObservers(this);
-                        dialogInterface.dismiss();
-                        finish();
-                    }, dialogInterface -> {
-                        dialogInterface.dismiss();
-                    });
+                    Toast.makeText(this, signInResponse.getSuccessMsg(), Toast.LENGTH_SHORT).show();
+                    finish();
+//                    showMessage("Alert", signInResponse.getSuccessMsg(), "OK", "Close", dialogInterface -> {
+//                        userViewModel.setSignInResponse(signInResponse);
+//                        profileViewModel.getSignInResponse().removeObservers(this);
+//                        dialogInterface.dismiss();
+//                        finish();
+//                    }, dialogInterface -> {
+//                        dialogInterface.dismiss();
+//                    });
                 } else {
                     showMessage("Alert", signInResponse.getErrorMsg(), "OK", null, dialogInterface -> {
                         dialogInterface.dismiss();
