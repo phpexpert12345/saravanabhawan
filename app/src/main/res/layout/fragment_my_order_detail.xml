@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:visibility="gone"
+    android:id="@+id/constraint_order_details"
     android:padding="10dp"
     tools:context=".view.ui.fragments.order.MyOrderDetailFragment">
 

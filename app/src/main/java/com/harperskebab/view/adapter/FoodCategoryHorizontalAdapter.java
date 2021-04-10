@@ -49,7 +49,7 @@ public class FoodCategoryHorizontalAdapter extends RecyclerView.Adapter<FoodCate
                 holder.getBinding().textViewFoodCategory.setBackground(context.getDrawable(R.drawable.new_white_bg));
 
             } else {
-                holder.getBinding().textViewFoodCategory.setTextColor(ContextCompat.getColor(context, R.color.newcolorGreendark));
+                holder.getBinding().textViewFoodCategory.setTextColor(ContextCompat.getColor(context, R.color.white));
                 holder.getBinding().textViewFoodCategory.setBackground(context.getDrawable(R.drawable.catgry_bg));
 //                holder.getBinding().textViewFoodCategory.setBackground(null);
             }

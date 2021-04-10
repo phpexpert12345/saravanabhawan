@@ -622,19 +622,21 @@ private void callCardAPI( String customerId){
 
     dialogPayBinding.recCardList.setLayoutManager(new LinearLayoutManager(getActivity()));
     dialogPayBinding.recCardList.setNestedScrollingEnabled(false);
-    cartViewModel.getGetCardListResponse().observe(this, cardListResponse -> {
-        //TODO
-        if (cardListResponse != null) {
-            if (cardListResponse.getCreditCardList().size() == 0) {
-                dialogPayBinding.recCardList.setVisibility(View.GONE);
-            } else {
-                dialogPayBinding.recCardList.setVisibility(View.VISIBLE);
-            }
-            cardListAdapter = new CardListAdapter(getActivity(), cardListResponse.getCreditCardList(), onCardClick);
-            dialogPayBinding.recCardList.setAdapter(cardListAdapter);
-        }
+    dialogPayBinding.recCardList.setVisibility(View.GONE);
 
-    });
+//    cartViewModel.getGetCardListResponse().observe(this, cardListResponse -> {
+//        //TODO
+//        if (cardListResponse != null) {
+//            if (cardListResponse.getCreditCardList().size() == 0) {
+//                dialogPayBinding.recCardList.setVisibility(View.GONE);
+//            } else {
+//                dialogPayBinding.recCardList.setVisibility(View.VISIBLE);
+//            }
+//            cardListAdapter = new CardListAdapter(getActivity(), cardListResponse.getCreditCardList(), onCardClick);
+//            dialogPayBinding.recCardList.setAdapter(cardListAdapter);
+//        }
+//
+//    });
     }
     private void callPlaceOrderAPI(double foodCost,String branchId,String saveCard, String cardType, String cardNumber, String cardExpMonth, String cardExpYear, String itemId, String quantity, String price, String sizeItemId, String extraItemId, String customerId, String selectedDeliveryAddressID, String paymentType,
                                    String toPayPrice, String subTotalAmount, String deliveryDate, String deliveryTime, String deliveryCharge, String couponCode, String couponCodePrice,

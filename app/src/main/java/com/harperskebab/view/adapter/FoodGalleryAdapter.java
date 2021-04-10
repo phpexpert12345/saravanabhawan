@@ -41,7 +41,7 @@ public class FoodGalleryAdapter extends RecyclerView.Adapter<FoodGalleryViewHold
 
         try {
 
-            Glide.with(context).load(photo.getFoodPhoto()).placeholder(R.drawable.loading).into(holder.getBinding().imageViewFood);
+            Glide.with(context).load(photo.getFoodPhoto()).placeholder(R.drawable.app_logo).into(holder.getBinding().imageViewFood);
             holder.getBinding().getRoot().setOnClickListener(v -> {
                 onItemClick.onClick(position, photo);
             });

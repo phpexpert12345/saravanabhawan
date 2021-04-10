@@ -82,7 +82,7 @@ public class OrderTrackFragment extends BaseFragment {
         trackOrderViewModel.getTrackOrderResponse().observe(this, trackOrderResponse -> {
 
             if (trackOrderResponse != null) {
-
+binding.linearOrderTrack.setVisibility(View.VISIBLE);
                 OrderDetailItem orderDetailItem = trackOrderResponse.getOrderDetailItem().get(0);
 //                OrderDetailItem.OrderViewResult orderViewResult = orderDetailItem.getOrders().getOrderViewResult().get(0);
 
@@ -140,6 +140,7 @@ public class OrderTrackFragment extends BaseFragment {
                 binding.recyclerViewOrderTrack.setAdapter(trackOrderAdapter);
 
             }
+
 
         });
 

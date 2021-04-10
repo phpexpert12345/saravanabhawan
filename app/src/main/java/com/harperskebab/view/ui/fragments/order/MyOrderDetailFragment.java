@@ -75,6 +75,7 @@ public class MyOrderDetailFragment extends BaseFragment {
             //todo
 
             if (orderDetailResponse != null) {
+                binding.constraintOrderDetails.setVisibility(View.VISIBLE);
                 OrderDetailItem orderDetailItem = orderDetailResponse.getOrderDetailItem().get(0);
 
                 binding.textViewOrderNumber.setText(String.format(languageViewModel.getLanguageResponse().getValue().getOrderNumber() + " %s", orderDetailResponse.getOrderDetailItem().get(0).getOrderNumber()));

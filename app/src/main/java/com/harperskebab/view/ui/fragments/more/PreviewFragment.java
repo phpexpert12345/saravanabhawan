@@ -54,7 +54,7 @@ public class PreviewFragment extends BaseFragment {
         getActivity().setTitle(languageViewModel.getLanguageResponse().getValue().getPreview());
         binding = FragmentPreviewBinding.inflate(inflater, container, false);
 
-        Glide.with(getActivity()).load(foodImageLink).placeholder(R.drawable.loading).into(binding.imageViewFood);
+        Glide.with(getActivity()).load(foodImageLink).placeholder(R.drawable.app_logo).into(binding.imageViewFood);
 
         return binding.getRoot();
     }

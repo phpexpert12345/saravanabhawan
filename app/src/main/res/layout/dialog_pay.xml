@@ -42,6 +42,7 @@
                 android:id="@+id/recCardList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/buttonPay"
                 tools:listitem="@layout/order_track_list_item_row" />
 

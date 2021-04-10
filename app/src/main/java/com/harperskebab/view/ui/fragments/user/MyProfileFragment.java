@@ -1,5 +1,6 @@
 package com.harperskebab.view.ui.fragments.user;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.bumptech.glide.Glide;
 import com.harperskebab.R;
@@ -117,8 +119,24 @@ binding.txtLogout.setText(languageViewModel.getLanguageResponse().getValue().get
                     new Intent(getActivity(), TicketActivity.class)
             );
         } else if (v.getId() == binding.cardViewLogout.getId()) {
-            userViewModel.setSignInResponse(null);
-            getActivity().finish();
+            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            builder.setTitle("Alert");
+            builder.setMessage("Are you sure you want to logout?");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    userViewModel.setSignInResponse(null);
+                    getActivity().finish();
+
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).create().show();
+
         }
     }
 

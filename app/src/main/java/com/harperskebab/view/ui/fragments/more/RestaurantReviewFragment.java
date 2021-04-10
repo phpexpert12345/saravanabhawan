@@ -68,7 +68,7 @@ public class RestaurantReviewFragment extends BaseFragment {
         restaurantViewModel.getRestaurant().observe(this, restaurant -> {
 
             if (restaurant != null) {
-
+binding.constraintReviews.setVisibility(View.VISIBLE);
                 Glide.with(getActivity()).load(restaurant.getRestaurantCover()).into(binding.imageViewRestaurant);
 
                 binding.textViewRestaurantName.setText(restaurant.getRestaurantName());

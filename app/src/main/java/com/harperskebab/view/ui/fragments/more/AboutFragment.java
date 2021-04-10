@@ -1,16 +1,19 @@
 package com.harperskebab.view.ui.fragments.more;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
 import com.harperskebab.databinding.FragmentAboutBinding;
+import com.harperskebab.network.NetworkOperations;
 import com.harperskebab.utils.Constant;
 import com.harperskebab.view.ui.fragments.BaseFragment;
 import com.harperskebab.viewmodel.RestaurantViewModel;
@@ -60,9 +63,26 @@ public class AboutFragment extends BaseFragment {
     }
 
     private void initiateContactUsFragment() {
+        NetworkOperations networkOperations=    new NetworkOperations(true);
+        networkOperations.onStart(getContext(),"");
         String url= Constant.Url.BASE_URL+"about_us_web.php";
-        binding.webView.setWebViewClient(new WebViewClient());
+        binding.webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+
+
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                networkOperations.onComplete();
+            }
+        });
+
         binding.webView.loadUrl(url);
+
     }
 
 

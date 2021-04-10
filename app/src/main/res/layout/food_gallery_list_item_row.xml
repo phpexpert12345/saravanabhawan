@@ -22,9 +22,9 @@
             <ImageView
                 android:id="@+id/imageViewFood"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_200sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/loading" />
+                android:src="@drawable/app_logo" />
 
         </RelativeLayout>
 

@@ -100,7 +100,7 @@ public class BookATableFragment extends BaseFragment {
 
         eatInViewModel.getTableList().observe(this, tables -> {
             if (tables != null) {
-
+binding.nestedScrollTable.setVisibility(View.VISIBLE);
                 TableAdapter tableAdapter = new TableAdapter(getActivity(), tables, -1L, (position, table) -> {
                     showDialogForNoOfPersonConfirmation(table);
                 });

@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#83B633"
+            android:background="@color/colorGreen"
             app:navigationIcon="@drawable/new_menu"
             app:titleTextColor="@color/colorAccent"
             android:layout_marginLeft="10dp"

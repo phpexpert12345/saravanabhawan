@@ -64,6 +64,7 @@ public class BranchesFragment extends BaseFragment {
         branchViewModel.getRestaurantBranches().observe(this, restaurantBranches -> {
 
             if (restaurantBranches != null) {
+                binding.constraintBranches.setVisibility(View.VISIBLE);
                 BranchViewAdapter branchAdapter = new BranchViewAdapter(getActivity(), restaurantBranches);
                 binding.recyclerViewBranchLocation.setAdapter(branchAdapter);
                 branchViewModel.getRestaurantBranches().removeObservers(this);

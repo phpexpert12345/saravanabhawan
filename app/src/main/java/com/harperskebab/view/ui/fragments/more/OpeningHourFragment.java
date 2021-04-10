@@ -61,6 +61,7 @@ public class OpeningHourFragment extends BaseFragment {
         openingHourViewModel.getOpeningHourResponse().observe(this, openingHourResponse -> {
 
             if (openingHourResponse != null) {
+                binding.constraintOpeningHour.setVisibility(View.VISIBLE);
                 if (openingHourResponse.getSuccess().equals("0")) {
                     binding.textViewMonday.setText(openingHourResponse.getMondayText());
                     binding.textViewTuesday.setText(openingHourResponse.getTuesdayText());
