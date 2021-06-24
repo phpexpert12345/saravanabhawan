@@ -820,6 +820,7 @@ getCartItems();
         } else if (v.getId() == binding.orderType.textViewEatIn.getId()) {
 
             if (SharedPrefrenceObj.getSharedValue(getActivity(), Constant.SharedPreference.EAT_IN_ORDER_ID) == null) {
+                if(restaurantViewModel.getRestaurant().getValue().getBookaTablesupportAvailable().equalsIgnoreCase("Yes")){
                 if (cartViewModel.getSelectedTableID().getValue() == null || cartViewModel.getSelectedTableID().getValue().equals("")) {
                     showEatInTypeDialog();
                 } else {
@@ -830,6 +831,7 @@ getCartItems();
                     editor.apply();
                     binding.buttonOrderSendToKitchen.setVisibility(View.GONE);
                     binding.linearLayoutCheckOut.setVisibility(View.VISIBLE);
+                }
 
                 }
             }

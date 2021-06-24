@@ -162,9 +162,15 @@ else{
         binding.header.txtBranchName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this, NewBranchActivity.class);
-                intent.putExtra("isFromHome",true);
-                startActivityForResult(intent,34);
+                if(restaurantViewModel.getRestaurant().getValue().getBranch_Available().equalsIgnoreCase("Yes")) {
+                    Intent intent = new Intent(HomeActivity.this, NewBranchActivity.class);
+                    intent.putExtra("isFromHome", true);
+                    startActivityForResult(intent, 34);
+                }
+                else{
+                    Intent intent = new Intent(HomeActivity.this, MapActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 //        if(restaurantViewModel.getRestaurant().getValue()!=null){

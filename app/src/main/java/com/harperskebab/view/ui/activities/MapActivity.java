@@ -338,26 +338,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
                 editor.putString("ORDERTYPE", strOrderType);
                 editor.apply();
                 if (strOrderType.equalsIgnoreCase("EAT-IN")) {
-                    Intent intent = new Intent(MapActivity.this, NewBranchActivity.class);
-                    strLat=currentLat;
-                    strLong=currentLong;
-                    intent.putExtra("LATITUDE", strLat);
-                    intent.putExtra("LONGITUDE", strLong);
-                    intent.putExtra("CURRENT_LAT", currentLat);
-                    intent.putExtra("CURRENT_LONG", currentLong);
-                    intent.putExtra("ADDRESS", strAddress);
-                    intent.putExtra("TYPE", true);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    if (strPostCode == null) {
-                        Toast.makeText(MapActivity.this, "Enter Your Postcode", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if(restaurantViewModel.getRestaurant().getValue().getBranch_Available().equalsIgnoreCase("Yes")) {
                         Intent intent = new Intent(MapActivity.this, NewBranchActivity.class);
-                        if (strLat == 0.0 && strLong == 0.0) {
-                            strLat = currentLocation.getLatitude();
-                            strLong = currentLocation.getLongitude();
-                        }
+                        strLat = currentLat;
+                        strLong = currentLong;
                         intent.putExtra("LATITUDE", strLat);
                         intent.putExtra("LONGITUDE", strLong);
                         intent.putExtra("CURRENT_LAT", currentLat);
@@ -365,6 +349,34 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Pla
                         intent.putExtra("ADDRESS", strAddress);
                         intent.putExtra("TYPE", true);
                         startActivity(intent);
+                    }
+                    else {
+                        PreferenceManager.getDefaultSharedPreferences(MapActivity.this).edit().putString("BRANCH_ADDRESS", strAddress).apply();
+                        startActivity(new Intent(MapActivity.this, HomeActivity.class).putExtra("BRANCH_ID", "").putExtra("BRANCH_NAME", ""));
+                    }
+                    finish();
+                } else {
+                    if (strPostCode == null) {
+                        Toast.makeText(MapActivity.this, "Enter Your Postcode", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if(restaurantViewModel.getRestaurant().getValue().getBranch_Available().equalsIgnoreCase("Yes")) {
+                            Intent intent = new Intent(MapActivity.this, NewBranchActivity.class);
+                            if (strLat == 0.0 && strLong == 0.0) {
+                                strLat = currentLocation.getLatitude();
+                                strLong = currentLocation.getLongitude();
+                            }
+                            intent.putExtra("LATITUDE", strLat);
+                            intent.putExtra("LONGITUDE", strLong);
+                            intent.putExtra("CURRENT_LAT", currentLat);
+                            intent.putExtra("CURRENT_LONG", currentLong);
+                            intent.putExtra("ADDRESS", strAddress);
+                            intent.putExtra("TYPE", true);
+                            startActivity(intent);
+                        }
+                        else{
+                            PreferenceManager.getDefaultSharedPreferences(MapActivity.this).edit().putString("BRANCH_ADDRESS", strAddress).apply();
+                            startActivity(new Intent(MapActivity.this, HomeActivity.class).putExtra("BRANCH_ID", "").putExtra("BRANCH_NAME", ""));
+                        }
                         finish();
                     }
                 }
