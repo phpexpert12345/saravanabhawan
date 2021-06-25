@@ -28,11 +28,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.harperskebab.R;
 import com.harperskebab.model.AddressFromPostcode;
 import com.harperskebab.model.AutoComplete;
 import com.harperskebab.model.Suggestion;
+import com.harperskebab.utils.Constant;
 import com.harperskebab.view.adapter.AddressFromPostcodeAdapter;
 import com.harperskebab.view.adapter.AutocompleteAdapter;
 import com.harperskebab.view.adapter.BranchAdapter;
@@ -56,6 +58,7 @@ public class AddressFromPostCodeActivity extends BaseActivity {
     String postcode_auto_secret_administration_API_Key;
     String postalCode;
     Intent intent;
+    RecyclerView recPostcode;
     public  void onClick(String strId, String val) {
         final String URL = "https://api.getaddress.io/get/"+strId+"?api-key="+postcode_auto_secret_administration_API_Key;
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -117,6 +120,21 @@ public class AddressFromPostCodeActivity extends BaseActivity {
         }
 
     }
+    public void searchClicked(String post_code,String address,String lat,String longt){
+        double latitude=0.0;
+        double longitude=0.0;
+        if(!lat.isEmpty()){
+            latitude=Double.parseDouble(lat);
+            longitude=Double.parseDouble(longt);
+        }
+        intent.putExtra("LAT",latitude);
+        intent.putExtra("LONG",longitude);
+        intent.putExtra("ADDRESS",address);
+        intent.putExtra("ADDRESS_FULL",address);
+        intent.putExtra("POSTCODE",post_code);
+        setResult(1,intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +161,7 @@ public class AddressFromPostCodeActivity extends BaseActivity {
             }
         });
         layout=findViewById(R.id.layout);
-        RecyclerView recPostcode = findViewById(R.id.recPostcode);
+        recPostcode = findViewById(R.id.recPostcode);
         recPostcode.setLayoutManager(new LinearLayoutManager(this));
 //        String postCode=getIntent().getStringExtra("POSTCODE");
         edtPostCode.addTextChangedListener(new TextWatcher() {
@@ -165,36 +183,37 @@ public class AddressFromPostCodeActivity extends BaseActivity {
                 if (value.length() >1) {
                     value=value.replaceAll(" ","%20");
                     postalCode=value;
-                    String url=postcode_auto_API_URL+value+"?api-key="+postcode_auto_secret_administration_API_Key+"&TOP=1000";
-                    Log.i("url",url);
+                    if(restaurantViewModel.getRestaurant().getValue().getPostcode_Lookup_From_API().equalsIgnoreCase("Yes")) {
+                        String url = postcode_auto_API_URL + value + "?api-key=" + postcode_auto_secret_administration_API_Key + "&TOP=1000";
+                        Log.i("url", url);
 //                    final String URL = "https://api.getaddress.io/autocomplete/"+value+"?api-key=OspYMXCpvkG568eqQ-tP5Q28829&TOP=1000";
-                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    try {
-                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    if (response!=null) {
-                                        suggestions=new ArrayList<>();
-                                        VolleyLog.v("Response:%n %s", response.toString(4));
-                                        JSONArray arr=response.getJSONArray("suggestions");
-                                        if (arr.length()>0) {
-                                            for (int i = 0; i < arr.length(); i++) {
-                                                JSONObject obj = arr.getJSONObject(i);
-                                                Suggestion suggestion = new Suggestion();
-                                                suggestion.setId(obj.getString("id"));
-                                                suggestion.setAddress(obj.getString("address"));
-                                                suggestion.setUrl(obj.getString("url"));
-                                                suggestions.add(suggestion);
+                        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                        try {
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        if (response != null) {
+                                            suggestions = new ArrayList<>();
+                                            VolleyLog.v("Response:%n %s", response.toString(4));
+                                            JSONArray arr = response.getJSONArray("suggestions");
+                                            if (arr.length() > 0) {
+                                                for (int i = 0; i < arr.length(); i++) {
+                                                    JSONObject obj = arr.getJSONObject(i);
+                                                    Suggestion suggestion = new Suggestion();
+                                                    suggestion.setId(obj.getString("id"));
+                                                    suggestion.setAddress(obj.getString("address"));
+                                                    suggestion.setUrl(obj.getString("url"));
+                                                    suggestions.add(suggestion);
+                                                }
+                                                AutocompleteAdapter autocompleteAdapter = new AutocompleteAdapter(AddressFromPostCodeActivity.this, suggestions, 0);
+                                                recPostcode.setAdapter(autocompleteAdapter);
+                                                recPostcode.setVisibility(View.VISIBLE);
+                                                layout.setVisibility(View.VISIBLE);
+                                                recPostcode.setBackgroundResource(R.drawable.white_round_corner_bg);
+                                            } else {
+                                                layout.setVisibility(View.GONE);
                                             }
-                                            AutocompleteAdapter autocompleteAdapter = new AutocompleteAdapter(AddressFromPostCodeActivity.this, suggestions);
-                                            recPostcode.setAdapter(autocompleteAdapter);
-                                            recPostcode.setVisibility(View.VISIBLE);
-                                            layout.setVisibility(View.VISIBLE);
-                                            recPostcode.setBackgroundResource(R.drawable.white_round_corner_bg);
-                                        }else {
-                                            layout.setVisibility(View.GONE);
-                                        }
 
 //                                        suggestions = new ArrayList<>();
 //                                        autoComplete = new AutoComplete();
@@ -210,33 +229,37 @@ public class AddressFromPostCodeActivity extends BaseActivity {
 //                                        recPostcode.setAdapter(adapter);
 //                                        recPostcode.setVisibility(View.VISIBLE);
 //                                        layout.setBackgroundResource(R.drawable.white_round_corner_bg);
-                                    }else {
-                                        recPostcode.setVisibility(View.GONE);
-                                        layout.setVisibility(View.GONE);
+                                        } else {
+                                            recPostcode.setVisibility(View.GONE);
+                                            layout.setVisibility(View.GONE);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                if(error.networkResponse!=null){
-                                    if(error.networkResponse.data!=null){
-                                        String data=new String(error.networkResponse.data);
-                                        if(data!=null){
-                                            Log.i("log",data);
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    if (error.networkResponse != null) {
+                                        if (error.networkResponse.data != null) {
+                                            String data = new String(error.networkResponse.data);
+                                            if (data != null) {
+                                                Log.i("log", data);
+                                            }
                                         }
                                     }
+                                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                    recPostcode.setVisibility(View.GONE);
                                 }
-                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                                recPostcode.setVisibility(View.GONE);
-                            }
-                        });
-                        requestQueue.add(jsonObjectRequest);
+                            });
+                            requestQueue.add(jsonObjectRequest);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        searchPostcode(value);
                     }
 
 
@@ -303,5 +326,44 @@ public class AddressFromPostCodeActivity extends BaseActivity {
             }
         }
         return digits;
+    }
+    private void searchPostcode(String search_code){
+        String url= Constant.Url.POSTCODE_SEARCH+"?search_postcode="+search_code+"&api_key="+Constant.API.FOOD_KEY+"&lang_code="+Constant.API.LANGUAGE_CODE;
+        Log.i("url",url);
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,url, response -> {
+            try {
+                JSONObject jsonObject=new JSONObject(response);
+                if(jsonObject.has("DeliveryAreaList")){
+                    suggestions=new ArrayList<>();
+                    JSONArray jsonArray=jsonObject.getJSONArray("DeliveryAreaList");
+                    if(jsonArray.length()>0){
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject json=jsonArray.getJSONObject(i);
+                            Suggestion suggestion = new Suggestion();
+                            suggestion.setId(json.getString("id"));
+                            suggestion.setAddress(json.getString("Admin_district"));
+                            suggestion.setUrl(json.getString("postcode"));
+                            suggestion.setLat(json.getString("Postcode_lat"));
+                            suggestion.setLongt(json.getString("Postcode_long"));
+                            suggestions.add(suggestion);
+
+                        }
+                        AutocompleteAdapter autocompleteAdapter = new AutocompleteAdapter(AddressFromPostCodeActivity.this, suggestions,1);
+                        recPostcode.setAdapter(autocompleteAdapter);
+                        recPostcode.setVisibility(View.VISIBLE);
+                        layout.setVisibility(View.VISIBLE);
+                        recPostcode.setBackgroundResource(R.drawable.white_round_corner_bg);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        },error -> {
+
+        });
+        RequestQueue requestQueue=Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

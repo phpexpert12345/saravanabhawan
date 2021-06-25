@@ -22,11 +22,13 @@ import java.util.ArrayList;
 public class AutocompleteAdapter extends RecyclerView.Adapter<AutocompleteAdapter.ViewHolder>{
     private Context context;
     ArrayList<Suggestion> suggestions;
+    int type;
 //    private OnLocationPoscodeClick onLocationPinClick;
 
-    public AutocompleteAdapter(Context context, ArrayList<Suggestion> suggestions) {
+    public AutocompleteAdapter(Context context, ArrayList<Suggestion> suggestions,int type) {
         this.context = context;
         this.suggestions=suggestions;
+        this.type=type;
 //        this.onLocationPinClick = onLocationPinClick;
     }
 
@@ -48,8 +50,16 @@ public class AutocompleteAdapter extends RecyclerView.Adapter<AutocompleteAdapte
             public void onClick(View view) {
                 String strId=suggestions.get(position).getId();
                 String val=suggestions.get(position).getAddress();
+                String url=suggestions.get(position).getUrl();
+                String lat=suggestions.get(position).getLat();
+                String longt=suggestions.get(position).getLongt();
                 if (context instanceof AddressFromPostCodeActivity) {
-                    ((AddressFromPostCodeActivity)context).onClick(strId,val);
+                    if(type==0) {
+                        ((AddressFromPostCodeActivity) context).onClick(strId, val);
+                    }
+                    else {
+                        ((AddressFromPostCodeActivity) context).searchClicked(url,val,lat,longt);
+                    }
                 }
             }
         });

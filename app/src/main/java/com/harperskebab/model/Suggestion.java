@@ -13,6 +13,12 @@ public class Suggestion {
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("longt")
+    @Expose
+    private String longt;
 
     public String getAddress() {
         return address;
@@ -36,6 +42,21 @@ public class Suggestion {
 
     public void setId(String id) {
         this.id = id;
+    }
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLongt() {
+        return longt;
+    }
+
+    public void setLongt(String longt) {
+        this.longt = longt;
     }
 
 }

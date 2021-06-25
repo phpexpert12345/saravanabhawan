@@ -60,6 +60,7 @@ public class Constant {
         public static final String GET_PAY_LATER_PLACE_ORDER = "phpexpert_payment_pay_later.php";
         public static final String GET_PAY_LATER_PLACE_ORDER_DIRECT = "phpexpert_payment_pay_later_direct.php";
         public static final String FORGET_PASSWORD = "phpexpert_customer_forgot_password.php";
+        public static final String POSTCODE_SEARCH=BASE_URL+"phpexpert_search_home_postcode.php";
     }
 
     public static class Header {
